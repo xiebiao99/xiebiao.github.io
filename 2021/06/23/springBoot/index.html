@@ -13,18 +13,19 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"xiebiao.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","Available values":"changyan | disqus | disqusjs | gitalk | livere | valine","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xiebiao.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","Available values":"changyan | disqus | disqusjs | gitalk | livere | valine","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="谢彪的个人博客">
+  <meta name="description" content="以梦为马，不负韶华！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springBoot">
 <meta property="og:url" content="http://xiebiao.com/2021/06/23/springBoot/index.html">
 <meta property="og:site_name" content="Xie Biao&#39;s Blog">
-<meta property="og:description" content="谢彪的个人博客">
+<meta property="og:description" content="以梦为马，不负韶华！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-23T13:16:00.000Z">
 <meta property="article:modified_time" content="2021-06-23T13:16:00.824Z">
@@ -98,6 +99,7 @@
       <h1 class="site-title">Xie Biao's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">谢彪的个人博客</p>
   </div>
 
   <div class="site-nav-right">
@@ -202,9 +204,9 @@
     <link itemprop="mainEntityOfPage" href="http://xiebiao.com/2021/06/23/springBoot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/crazycoding/crazycoding_logo.png">
+      <meta itemprop="image" content="/uploads/avatar.png">
       <meta itemprop="name" content="Xie Biao">
-      <meta itemprop="description" content="谢彪的个人博客">
+      <meta itemprop="description" content="以梦为马，不负韶华！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -250,19 +252,19 @@
     
     
         <div class="reward-container">
-  <div></div>
+  <div>文章不错，打赏一个!</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
     打赏
   </button>
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/crazycoding/wechatpay.png" alt="Xie Biao 微信支付">
+        <img src="/uploads/crazycoding/wechatpay.png" alt="Xie Biao 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/crazycoding/alipay.png" alt="Xie Biao 支付宝">
+        <img src="/uploads/crazycoding/alipay.png" alt="Xie Biao 支付宝">
         <p>支付宝</p>
       </div>
 
@@ -277,12 +279,22 @@
     <div class="social-list">
 
         <div class="social-item">
-          <a target="_blank" class="social-link" href="/images/crazycoding/wechat account.png">
+          <a target="_blank" class="social-link" href="/uploads/crazycoding/wechat_account.png">
             <span class="icon">
               <i class="fab fa-weixin"></i>
             </span>
 
             <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
           </a>
         </div>
     </div>
@@ -308,6 +320,7 @@
       </footer>
     
   </article>
+
   
   
   
@@ -342,14 +355,29 @@
         </div>
           
   
+
   <div class="toggle sidebar-toggle">
     <span class="toggle-line toggle-line-first"></span>
     <span class="toggle-line toggle-line-middle"></span>
     <span class="toggle-line toggle-line-last"></span>
   </div>
 
+
   <aside class="sidebar">
     <div class="sidebar-inner">
+
+
+
+
+<!--外链网易云音乐--抖音最火音乐-->
+
+<div id="music163player">
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1844923373&auto=0&height=66"></iframe>
+
+</div>
+
+
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -360,17 +388,20 @@
         </li>
       </ul>
 
+
+
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
       </div>
       <!--/noindex-->
 
+
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Xie Biao"
-      src="/images/crazycoding/crazycoding_logo.png">
+      src="/uploads/avatar.png">
   <p class="site-author-name" itemprop="name">Xie Biao</p>
-  <div class="site-description" itemprop="description">谢彪的个人博客</div>
+  <div class="site-description" itemprop="description">以梦为马，不负韶华！</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -394,8 +425,20 @@
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly93d3cuY29kZS1uYXYuY24vcmVjb21tZW5k" title="https:&#x2F;&#x2F;www.code-nav.cn&#x2F;recommend">编程导航</span>
+        </li>
+    </ul>
+  </div>
 
       </div>
+
+
 
     </div>
   </aside>
@@ -432,6 +475,16 @@
   </div>
 
 -->
+
+
+
+
+
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
 
         
 
@@ -535,6 +588,8 @@
   
   <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -606,5 +661,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-tsumiki"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
