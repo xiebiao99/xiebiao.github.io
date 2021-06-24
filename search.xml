@@ -36,7 +36,19 @@
   <entry>
     <title>javaSE</title>
     <url>/2021/06/23/javaSE/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[
+ <iframe src="//player.bilibili.com/player.html?aid=90978812&cid=155358422&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> 
+
+
+<iframe src="//player.bilibili.com/player.html?aid=967612226&bvid=BV1np4y1C7Yf&cid=171918849&page=16" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>后端</tag>
+      </tags>
   </entry>
   <entry>
     <title>使用vscode打开一个前端项目的流程</title>
