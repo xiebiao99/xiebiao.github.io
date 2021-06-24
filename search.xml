@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>javaSE</title>
+    <url>/2021/06/23/javaSE/</url>
+    <content><![CDATA[
+ <iframe src="//player.bilibili.com/player.html?aid=90978812&cid=155358422&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> 
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>后端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2021/06/24/hello-world/</url>
     <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
@@ -19,30 +33,13 @@
 ]]></content>
   </entry>
   <entry>
-    <title>javaSE</title>
-    <url>/2021/06/23/javaSE/</url>
-    <content><![CDATA[
- <iframe src="//player.bilibili.com/player.html?aid=90978812&cid=155358422&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> 
-
-
-<iframe src="//player.bilibili.com/player.html?aid=967612226&bvid=BV1np4y1C7Yf&cid=171918849&page=16" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>后端</tag>
-      </tags>
+    <title>javaWeb</title>
+    <url>/2021/06/23/javaWeb/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>springBoot</title>
     <url>/2021/06/23/springBoot/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>javaWeb</title>
-    <url>/2021/06/23/javaWeb/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
