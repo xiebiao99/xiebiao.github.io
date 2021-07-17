@@ -2,16 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xiebiao99.github.io/2021/06/23/javaSE/</loc>
+    <loc>https://xiebiao99.github.io/2019/01/16/docker-compose%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D%E5%AE%B9%E5%99%A8/</loc>
     
-    <lastmod>2021-06-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiebiao99.github.io/2021/06/23/springCloud/</loc>
-    
-    <lastmod>2021-06-24</lastmod>
+    <lastmod>2021-07-17</lastmod>
     
   </url>
   
@@ -22,57 +15,22 @@
     
   </url>
   
-  <url>
-    <loc>https://xiebiao99.github.io/2021/06/23/springBoot/</loc>
-    
-    <lastmod>2021-06-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiebiao99.github.io/2021/06/23/javaWeb/</loc>
-    
-    <lastmod>2021-06-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiebiao99.github.io/2021/06/23/%E4%BD%BF%E7%94%A8vscode%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%B5%81%E7%A8%8B/</loc>
-    
-    <lastmod>2021-06-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xiebiao99.github.io/2021/06/24/hello-world/</loc>
-    
-    <lastmod>2021-06-22</lastmod>
-    
-  </url>
-  
 
   <url>
     <loc>https://xiebiao99.github.io/</loc>
-    <lastmod>2021-06-24</lastmod>
+    <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://xiebiao99.github.io/tags/%E5%90%8E%E7%AB%AF/</loc>
-    <lastmod>2021-06-24</lastmod>
+    <loc>https://xiebiao99.github.io/tags/docker/</loc>
+    <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
 
-  
-  <url>
-    <loc>https://xiebiao99.github.io/categories/java/</loc>
-    <lastmod>2021-06-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
 </urlset>

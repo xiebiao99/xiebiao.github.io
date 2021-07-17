@@ -1,55 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>javaSE</title>
-    <url>/2021/06/23/javaSE/</url>
-    <content><![CDATA[
- <iframe src="//player.bilibili.com/player.html?aid=90978812&cid=155358422&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> 
+    <title>docker-compose安装各种容器</title>
+    <url>/2019/01/16/docker-compose%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h1><h2 id="Compose-简介"><a href="#Compose-简介" class="headerlink" title="Compose 简介"></a>Compose 简介</h2><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</p>
+<p>Compose 使用的三个步骤：</p>
+<ul>
+<li>使用 Dockerfile 定义应用程序的环境。</li>
+<li>使用 docker-compose.yml 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。</li>
+<li>最后，执行 docker-compose up 命令来启动并运行整个应用程序。</li>
+</ul>
+<h2 id="一、安装docker"><a href="#一、安装docker" class="headerlink" title="一、安装docker"></a>一、安装docker</h2><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwvY2VudG9zLw==">https://docs.docker.com/engine/install/centos/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="1-1、卸载系统之前的docker"><a href="#1-1、卸载系统之前的docker" class="headerlink" title="1.1、卸载系统之前的docker"></a>1.1、卸载系统之前的docker</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
 
+<h3 id="1-2、先安装一些必须依赖的包"><a href="#1-2、先安装一些必须依赖的包" class="headerlink" title="1.2、先安装一些必须依赖的包"></a>1.2、先安装一些必须依赖的包</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sudo yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3、添加docker下载仓库"><a href="#1-3、添加docker下载仓库" class="headerlink" title="1.3、添加docker下载仓库"></a>1.3、添加docker下载仓库</h3><p>配置镜像，即告诉虚拟机docker应该从哪个地址安装</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:<span class="comment">//download.docker.com/linux/centos/docker-ce.repo</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4、安装docker的客户端和它的容器"><a href="#1-4、安装docker的客户端和它的容器" class="headerlink" title="1.4、安装docker的客户端和它的容器"></a>1.4、安装docker的客户端和它的容器</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5、启动docker"><a href="#1-5、启动docker" class="headerlink" title="1.5、启动docker"></a>1.5、启动docker</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6、设置开机自启动"><a href="#1-6、设置开机自启动" class="headerlink" title="1.6、设置开机自启动"></a>1.6、设置开机自启动</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-7、查看docker版本"><a href="#1-7、查看docker版本" class="headerlink" title="1.7、查看docker版本"></a>1.7、查看docker版本</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">#验证</span><br><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-8、查看docker中安装了哪些镜像"><a href="#1-8、查看docker中安装了哪些镜像" class="headerlink" title="1.8、查看docker中安装了哪些镜像"></a>1.8、查看docker中安装了哪些镜像</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-9、配置阿里云镜像加速"><a href="#1-9、配置阿里云镜像加速" class="headerlink" title="1.9、配置阿里云镜像加速"></a>1.9、配置阿里云镜像加速</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://hnlqq1f3.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-9-1、查看阿里云镜像加速地址"><a href="#1-9-1、查看阿里云镜像加速地址" class="headerlink" title="1.9.1、查看阿里云镜像加速地址"></a>1.9.1、查看阿里云镜像加速地址</h4><p>1、</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221240.png" alt="image-20210715161118363"></p>
+<p>2、</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221302.png" alt="image-20210715161150031"></p>
+<p>3、</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221311.png" alt="image-20210715161204253"></p>
+<p>4、</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221317.png" alt="image-20210716155724025"></p>
+<h4 id="1-9-2、阿里云镜像加速地址"><a href="#1-9-2、阿里云镜像加速地址" class="headerlink" title="1.9.2、阿里云镜像加速地址"></a>1.9.2、阿里云镜像加速地址</h4><p><span class="exturl" data-url="aHR0cHM6Ly9jci5jb25zb2xlLmFsaXl1bi5jb20vY24taGFuZ3pob3UvaW5zdGFuY2VzL21pcnJvcnM=">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="二、安装docker-compose"><a href="#二、安装docker-compose" class="headerlink" title="二、安装docker-compose"></a>二、安装docker-compose</h2><p>查看github上的docker-compose发行版本的地址：<br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci9jb21wb3NlL3RhZ3M=">https://github.com/docker/compose/tags<i class="fa fa-external-link-alt"></i></span><br>当前最新的版本是1.26.2。</p>
+<p>compose官网安装文档：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vY29tcG9zZS9pbnN0YWxsLyNpbnN0YWxsLWNvbXBvc2U=">https://docs.docker.com/compose/install/#install-compose<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>安装的命令如下：</strong></p>
+<h3 id="2-1、拉取"><a href="#2-1、拉取" class="headerlink" title="2.1、拉取"></a>2.1、拉取</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)&quot;</span> -o /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2、设置文件具备执行权限"><a href="#2-2、设置文件具备执行权限" class="headerlink" title="2.2、设置文件具备执行权限"></a>2.2、设置文件具备执行权限</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3、查看版本信息"><a href="#2-3、查看版本信息" class="headerlink" title="2.3、查看版本信息"></a>2.3、查看版本信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-1、docker-compose卸载"><a href="#2-3-1、docker-compose卸载" class="headerlink" title="2.3.1、docker-compose卸载"></a>2.3.1、docker-compose卸载</h4><p>如果安装出错，要卸载docker-compose，可执行这个命令</p>
+<p><strong>二进制包方式安装的，删除二进制文件即可</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">rm /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、docker-compose安装容器"><a href="#三、docker-compose安装容器" class="headerlink" title="三、docker-compose安装容器"></a>三、docker-compose安装容器</h2><h3 id="3-1、创建文件"><a href="#3-1、创建文件" class="headerlink" title="3.1、创建文件"></a>3.1、创建文件</h3><p>1、在root目录下面建立docker-compose-service文件夹</p>
+<p>docker-compose-service文件是我以后存放所有安装的容器地址</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221328.png" alt="image-20210716155142182"></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221340.png" alt="image-20210715152336812"></p>
+<h3 id="3-2、新建一个docker-compose-yml文件"><a href="#3-2、新建一个docker-compose-yml文件" class="headerlink" title="3.2、新建一个docker-compose.yml文件"></a>3.2、新建一个docker-compose.yml文件</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">cd docker-compose-service		#切换到docker-compose-service文件夹下vim docker-compose.yml				#编辑docker-compose.yml文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3、添加内容"><a href="#3-3、添加内容" class="headerlink" title="3.3、添加内容"></a>3.3、添加内容</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span>services:  mysql:    restart: always    image: mysql:<span class="number">5.7</span>    container_name: mysql    ports:      - <span class="string">&quot;3306:3306&quot;</span>    command:      --<span class="keyword">default</span>-authentication-plugin=mysql_native_password      --character-set-server=utf8mb4      --collation-server=utf8mb4_general_ci      --explicit_defaults_for_timestamp=<span class="keyword">true</span>      --lower_case_table_names=<span class="number">1</span>     environment:      MYSQL_ROOT_PASSWORD: <span class="string">&quot;root&quot;</span>     volumes:      - /root/docker-compose-service/mysql/data:/<span class="keyword">var</span>/lib/mysql      - /root/docker-compose-service/mysql/conf/my.cnf:/etc/my.cnf     redis:    image: redis    container_name: redis    environment:      - TZ=Asia/Shanghai    command: redis-server /usr/local/etc/redis/redis.conf    ports:      - <span class="string">&quot;6379:6379&quot;</span>    volumes:      - /root/docker-compose-service/redis/data:/<span class="keyword">var</span>/lib/redis/data      - /root/docker-compose-service/redis/redis.conf:/usr/local/etc/redis/redis.conf         nginx:    image: nginx    restart: always    container_name: nginx    environment:      - TZ=Asia/Shanghai    ports:      - <span class="string">&quot;82:80&quot;</span>      - <span class="string">&quot;443:443&quot;</span>    volumes:      - /root/docker-compose-service/nginx/conf.d:/etc/nginx/conf.d      - /root/docker-compose-service/nginx/log:/<span class="keyword">var</span>/log/nginx      - /root/docker-compose-service/nginx/www:/etc/nginx/html      - /root/docker-compose-service/nginx/etc/letsencrypt:/etc/letsencrypt </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls		#验证文件是否创建成功</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4、后台启动"><a href="#3-4、后台启动" class="headerlink" title="3.4、后台启动"></a>3.4、后台启动</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<h5 id><a href="#" class="headerlink" title></a><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221351.png" alt="image-20210715144911775"></h5><p>安装完成</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221357.png" alt="image-20210715144950786"></p>
+<p><strong>由于nacos依赖于mysql, 所以这里单独把nacos配置拿出来</strong></p>
+<h3 id="3-5、配置数据库"><a href="#3-5、配置数据库" class="headerlink" title="3.5、配置数据库"></a>3.5、配置数据库</h3><p>这里很重要，一定要等到mysql安装成功并启动完后再重新创建nacos数据库<img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221403.png" alt="image-20210715195305567"></p>
+<p>之后再安装nacos容器</p>
+<h4 id="3-5-1、下载nacos-config-sql文件"><a href="#3-5-1、下载nacos-config-sql文件" class="headerlink" title="3.5.1、下载nacos_config.sql文件"></a>3.5.1、下载nacos_config.sql文件</h4><p><strong>nacos初始化sql,需要先创建nacos数据库后，然后执行下面的sql</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvbmFjb3MvYmxvYi9tYXN0ZXIvY29uZmlnL3NyYy9tYWluL3Jlc291cmNlcy9NRVRBLUlORi9uYWNvcy1kYi5zcWw=">https://github.com/alibaba/nacos/blob/master/config/src/main/resources/META-INF/nacos-db.sql<i class="fa fa-external-link-alt"></i></span></p>
+<p>或者直接将下列sql保存到记事本，重命名为nacos_config.sql</p>
+<p><strong>nacos_config.sql文件</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">CREATE TABLE `config_info` (  `id` bigint(<span class="number">20</span>) NOT NULL AUTO_INCREMENT COMMENT &#x27;id&#x27;,  `data_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;data_id&#x27;,  `group_id` varchar(<span class="number">255</span>) DEFAULT NULL,  `content` longtext NOT NULL COMMENT &#x27;content&#x27;,  `md5` varchar(<span class="number">32</span>) DEFAULT NULL COMMENT &#x27;md5&#x27;,  `gmt_create` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;创建时间&#x27;,  `gmt_modified` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;修改时间&#x27;,  `src_user` text COMMENT &#x27;source user&#x27;,  `src_ip` varchar(<span class="number">20</span>) DEFAULT NULL COMMENT &#x27;source ip&#x27;,  `app_name` varchar(<span class="number">128</span>) DEFAULT NULL,  `tenant_id` varchar(<span class="number">128</span>) DEFAULT &#x27;&#x27; COMMENT &#x27;租户字段&#x27;,  `c_desc` varchar(<span class="number">256</span>) DEFAULT NULL,  `c_use` varchar(<span class="number">64</span>) DEFAULT NULL,  `effect` varchar(<span class="number">64</span>) DEFAULT NULL,  `type` varchar(<span class="number">64</span>) DEFAULT NULL,  `c_schema` text,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_configinfo_datagrouptenant` (`data_id`,`group_id`,`tenant_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;config_info&#x27;;CREATE TABLE `config_info_aggr` (  `id` bigint(<span class="number">20</span>) NOT NULL AUTO_INCREMENT COMMENT &#x27;id&#x27;,  `data_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;data_id&#x27;,  `group_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;group_id&#x27;,  `datum_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;datum_id&#x27;,  `content` longtext NOT NULL COMMENT &#x27;内容&#x27;,  `gmt_modified` datetime NOT NULL COMMENT &#x27;修改时间&#x27;,  `app_name` varchar(<span class="number">128</span>) DEFAULT NULL,  `tenant_id` varchar(<span class="number">128</span>) DEFAULT &#x27;&#x27; COMMENT &#x27;租户字段&#x27;,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_configinfoaggr_datagrouptenantdatum` (`data_id`,`group_id`,`tenant_id`,`datum_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;增加租户字段&#x27;;CREATE TABLE `config_info_beta` (  `id` bigint(<span class="number">20</span>) NOT NULL AUTO_INCREMENT COMMENT &#x27;id&#x27;,  `data_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;data_id&#x27;,  `group_id` varchar(<span class="number">128</span>) NOT NULL COMMENT &#x27;group_id&#x27;,  `app_name` varchar(<span class="number">128</span>) DEFAULT NULL COMMENT &#x27;app_name&#x27;,  `content` longtext NOT NULL COMMENT &#x27;content&#x27;,  `beta_ips` varchar(<span class="number">1024</span>) DEFAULT NULL COMMENT &#x27;betaIps&#x27;,  `md5` varchar(<span class="number">32</span>) DEFAULT NULL COMMENT &#x27;md5&#x27;,  `gmt_create` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;创建时间&#x27;,  `gmt_modified` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;修改时间&#x27;,  `src_user` text COMMENT &#x27;source user&#x27;,  `src_ip` varchar(<span class="number">20</span>) DEFAULT NULL COMMENT &#x27;source ip&#x27;,  `tenant_id` varchar(<span class="number">128</span>) DEFAULT &#x27;&#x27; COMMENT &#x27;租户字段&#x27;,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_configinfobeta_datagrouptenant` (`data_id`,`group_id`,`tenant_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;config_info_beta&#x27;;CREATE TABLE `config_info_tag` (  `id` bigint(<span class="number">20</span>) NOT NULL AUTO_INCREMENT COMMENT &#x27;id&#x27;,  `data_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;data_id&#x27;,  `group_id` varchar(<span class="number">128</span>) NOT NULL COMMENT &#x27;group_id&#x27;,  `tenant_id` varchar(<span class="number">128</span>) DEFAULT &#x27;&#x27; COMMENT &#x27;tenant_id&#x27;,  `tag_id` varchar(<span class="number">128</span>) NOT NULL COMMENT &#x27;tag_id&#x27;,  `app_name` varchar(<span class="number">128</span>) DEFAULT NULL COMMENT &#x27;app_name&#x27;,  `content` longtext NOT NULL COMMENT &#x27;content&#x27;,  `md5` varchar(<span class="number">32</span>) DEFAULT NULL COMMENT &#x27;md5&#x27;,  `gmt_create` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;创建时间&#x27;,  `gmt_modified` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;修改时间&#x27;,  `src_user` text COMMENT &#x27;source user&#x27;,  `src_ip` varchar(<span class="number">20</span>) DEFAULT NULL COMMENT &#x27;source ip&#x27;,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_configinfotag_datagrouptenanttag` (`data_id`,`group_id`,`tenant_id`,`tag_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;config_info_tag&#x27;;CREATE TABLE `config_tags_relation` (  `id` bigint(<span class="number">20</span>) NOT NULL COMMENT &#x27;id&#x27;,  `tag_name` varchar(<span class="number">128</span>) NOT NULL COMMENT &#x27;tag_name&#x27;,  `tag_type` varchar(<span class="number">64</span>) DEFAULT NULL COMMENT &#x27;tag_type&#x27;,  `data_id` varchar(<span class="number">255</span>) NOT NULL COMMENT &#x27;data_id&#x27;,  `group_id` varchar(<span class="number">128</span>) NOT NULL COMMENT &#x27;group_id&#x27;,  `tenant_id` varchar(<span class="number">128</span>) DEFAULT &#x27;&#x27; COMMENT &#x27;tenant_id&#x27;,  `nid` bigint(<span class="number">20</span>) NOT NULL AUTO_INCREMENT,  PRIMARY KEY (`nid`),  UNIQUE KEY `uk_configtagrelation_configidtag` (`id`,`tag_name`,`tag_type`),  KEY `idx_tenant_id` (`tenant_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;config_tag_relation&#x27;; CREATE TABLE `group_capacity` (  `id` bigint(<span class="number">20</span>) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;主键ID&#x27;,  `group_id` varchar(<span class="number">128</span>) NOT NULL DEFAULT &#x27;&#x27; COMMENT &#x27;Group ID，空字符表示整个集群&#x27;,  `quota` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;配额，<span class="number">0</span>表示使用默认值&#x27;,  `usage` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;使用量&#x27;,  `max_size` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;单个配置大小上限，单位为字节，<span class="number">0</span>表示使用默认值&#x27;,  `max_aggr_count` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;聚合子配置最大个数，，<span class="number">0</span>表示使用默认值&#x27;,  `max_aggr_size` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;单个聚合数据的子配置大小上限，单位为字节，<span class="number">0</span>表示使用默认值&#x27;,  `max_history_count` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;最大变更历史数量&#x27;,  `gmt_create` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;创建时间&#x27;,  `gmt_modified` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;修改时间&#x27;,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_group_id` (`group_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;集群、各Group容量信息表&#x27;; CREATE TABLE `his_config_info` (  `id` bigint(<span class="number">64</span>) unsigned NOT NULL,  `nid` bigint(<span class="number">20</span>) unsigned NOT NULL AUTO_INCREMENT,  `data_id` varchar(<span class="number">255</span>) NOT NULL,  `group_id` varchar(<span class="number">128</span>) NOT NULL,  `app_name` varchar(<span class="number">128</span>) DEFAULT NULL COMMENT &#x27;app_name&#x27;,  `content` longtext NOT NULL,  `md5` varchar(<span class="number">32</span>) DEFAULT NULL,  `gmt_create` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27;,  `gmt_modified` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27;,  `src_user` text,  `src_ip` varchar(<span class="number">20</span>) DEFAULT NULL,  `op_type` char(<span class="number">10</span>) DEFAULT NULL,  `tenant_id` varchar(<span class="number">128</span>) DEFAULT &#x27;&#x27; COMMENT &#x27;租户字段&#x27;,  PRIMARY KEY (`nid`),  KEY `idx_gmt_create` (`gmt_create`),  KEY `idx_gmt_modified` (`gmt_modified`),  KEY `idx_did` (`data_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;多租户改造&#x27;;CREATE TABLE `tenant_capacity` (  `id` bigint(<span class="number">20</span>) unsigned NOT NULL AUTO_INCREMENT COMMENT &#x27;主键ID&#x27;,  `tenant_id` varchar(<span class="number">128</span>) NOT NULL DEFAULT &#x27;&#x27; COMMENT &#x27;Tenant ID&#x27;,  `quota` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;配额，<span class="number">0</span>表示使用默认值&#x27;,  `usage` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;使用量&#x27;,  `max_size` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;单个配置大小上限，单位为字节，<span class="number">0</span>表示使用默认值&#x27;,  `max_aggr_count` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;聚合子配置最大个数&#x27;,  `max_aggr_size` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;单个聚合数据的子配置大小上限，单位为字节，<span class="number">0</span>表示使用默认值&#x27;,  `max_history_count` int(<span class="number">10</span>) unsigned NOT NULL DEFAULT &#x27;<span class="number">0</span>&#x27; COMMENT &#x27;最大变更历史数量&#x27;,  `gmt_create` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;创建时间&#x27;,  `gmt_modified` datetime NOT NULL DEFAULT &#x27;<span class="number">2010</span><span class="number">-05</span><span class="number">-05</span> <span class="number">000000</span>&#x27; COMMENT &#x27;修改时间&#x27;,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_tenant_id` (`tenant_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;租户容量信息表&#x27;;CREATE TABLE `tenant_info` (  `id` bigint(<span class="number">20</span>) NOT NULL AUTO_INCREMENT COMMENT &#x27;id&#x27;,  `kp` varchar(<span class="number">128</span>) NOT NULL COMMENT &#x27;kp&#x27;,  `tenant_id` varchar(<span class="number">128</span>) default &#x27;&#x27; COMMENT &#x27;tenant_id&#x27;,  `tenant_name` varchar(<span class="number">128</span>) default &#x27;&#x27; COMMENT &#x27;tenant_name&#x27;,  `tenant_desc` varchar(<span class="number">256</span>) DEFAULT NULL COMMENT &#x27;tenant_desc&#x27;,  `create_source` varchar(<span class="number">32</span>) DEFAULT NULL COMMENT &#x27;create_source&#x27;,  `gmt_create` bigint(<span class="number">20</span>) NOT NULL COMMENT &#x27;创建时间&#x27;,  `gmt_modified` bigint(<span class="number">20</span>) NOT NULL COMMENT &#x27;修改时间&#x27;,  PRIMARY KEY (`id`),  UNIQUE KEY `uk_tenant_info_kptenantid` (`kp`,`tenant_id`),  KEY `idx_tenant_id` (`tenant_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT=&#x27;tenant_info&#x27;;CREATE TABLE users (	username varchar(<span class="number">50</span>) NOT NULL PRIMARY KEY,	password varchar(<span class="number">500</span>) NOT NULL,	enabled boolean NOT NULL);CREATE TABLE roles (	username varchar(<span class="number">50</span>) NOT NULL,	role varchar(<span class="number">50</span>) NOT NULL,	constraint uk_username_role UNIQUE (username,role));CREATE TABLE permissions (    role varchar(<span class="number">50</span>) NOT NULL,    resource varchar(<span class="number">512</span>) NOT NULL,    action varchar(<span class="number">8</span>) NOT NULL,    constraint uk_role_permission UNIQUE (role,resource,action));INSERT INTO users (username, password, enabled) VALUES (&#x27;nacos&#x27;, &#x27;$<span class="number">2</span>a$<span class="number">10</span>$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu&#x27;, TRUE);INSERT INTO roles (username, role) VALUES (&#x27;nacos&#x27;, &#x27;ROLE_ADMIN&#x27;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221415.png" alt="image-20210714002738357"></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221419.png" alt="image-20210714002806254"></p>
+<h4 id="3-5-2、navicat连接mysql"><a href="#3-5-2、navicat连接mysql" class="headerlink" title="3.5.2、navicat连接mysql"></a>3.5.2、navicat连接mysql</h4><p><strong>navicat连接服务器上已经安装好并运行的mysql</strong></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221426.png" alt="image-20210716155359884"></p>
+<h4 id="3-5-3、创建数据库"><a href="#3-5-3、创建数据库" class="headerlink" title="3.5.3、创建数据库"></a>3.5.3、创建数据库</h4><p>数据库名称和sql文件名一致，字符集和排序规则对应sql文件要求</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221433.png" alt="image-20210714002830902"></p>
+<h4 id="3-5-4、运行sql文件"><a href="#3-5-4、运行sql文件" class="headerlink" title="3.5.4、运行sql文件"></a>3.5.4、运行sql文件</h4><p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221440.png" alt="image-20210715165533095"></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221445.png" alt="image-20210714002936234"></p>
+<p>刷新得到如下表信息代表数据库创建成功</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717222536.png" alt="image-20210714002957208"></p>
+<h4 id="3-5-5、注意"><a href="#3-5-5、注意" class="headerlink" title="3.5.5、注意"></a>3.5.5、注意</h4><p><strong>1.1.4 升级1.3.1需要执行的脚本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE `roles` ADD UNIQUE `uk_username_role` (`username`, `role`); CREATE TABLE permissions ( role varchar(**50**) NOT NULL, resource varchar(**512**) NOTNULL, action varchar(**8**) NOT NULL, constraint uk_role_permission UNIQUE (role,resource,action) ) ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
+
+<p>如果启动1.3.1报错，比如mysql时区异常，把conf配置文件弄到主机上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">docker cp nacos1<span class="number">.3</span><span class="number">.1</span>:/home/nacos/conf /home/dockerdata/nacos1<span class="number">.3</span><span class="number">.1</span> #修改mysql的配置后docker stop nacos1<span class="number">.3</span>.1docker rm nacos1<span class="number">.3</span>.1docker run -d \-e PREFER_HOST_MODE=ip \-e MODE=standalone \-e SPRING_DATASOURCE_PLATFORM=mysql \-e MYSQL_SERVICE_HOST=<span class="number">172.159</span><span class="number">.1</span><span class="number">.33</span> \-e MYSQL_SERVICE_PORT=<span class="number">3306</span> \-e MYSQL_SERVICE_USER=root \-e MYSQL_SERVICE_PASSWORD=<span class="number">12345</span> \-e MYSQL_SERVICE_DB_NAME=nacos \-e TIME_ZONE=<span class="string">&#x27;Asia/Shanghai&#x27;</span> \-v /home/dockerdata/nacos1<span class="number">.3</span><span class="number">.1</span>/logs:/home/nacos/logs \-v /home/dockerdata/nacos1<span class="number">.3</span><span class="number">.1</span>/conf:/home/nacos/conf \-p <span class="number">8848</span>:<span class="number">8848</span> \--name nacos1<span class="number">.3</span><span class="number">.1</span> \--restart=always \nacos/nacos-server:<span class="number">1.3</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>安装nacos时，一定要先打开刚才创建好的数据库，否则在启动nacos 会报下面的错</strong></p>
+<p><strong><font color="red">错误</font></strong></p>
+<p>No DataSource set</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ERROR Application run failedorg.springframework.beans.factory.UnsatisfiedDependencyException: <span class="built_in">Error</span> creating bean <span class="keyword">with</span> name <span class="string">&#x27;opsController&#x27;</span> defined <span class="keyword">in</span> URL [jar:file:<span class="regexp">/home/</span>nacos/target/nacos-server.jar!<span class="regexp">/BOOT-INF/</span>lib/nacos-config-<span class="number">1.1</span><span class="number">.4</span>.jar!<span class="regexp">/com/</span>alibaba/nacos/config/server/controller/OpsController.class]: Unsatisfied dependency expressed through <span class="title">constructor</span> <span class="title">parameter</span> 1; nested exception is org.springframework.beans.factory.BeanCreationException: <span class="built_in">Error</span> creating bean <span class="keyword">with</span> name <span class="string">&#x27;dumpService&#x27;</span>: Invocation <span class="keyword">of</span> init method failed; nested exception is java.lang.RuntimeException: Nacos Server did not start because dumpservice bean construction failure :No DataSource set    at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:<span class="number">769</span>)    at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:<span class="number">218</span>)        ... <span class="number">40</span> common frames omitted</span><br></pre></td></tr></table></figure>
+
+<p><strong><font color="cornflowerblue">解决</font></strong></p>
+<p><strong>先打开刚才创建好的nacos_config数据库</strong></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221449.png" alt="image-20210715163647028"></p>
+<p>最后不要忘记更改阿里云安全组的配置规则 </p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221453.png" alt="img"></p>
+<h3 id="3-6、打开docker-compose-yml"><a href="#3-6、打开docker-compose-yml" class="headerlink" title="3.6、打开docker-compose.yml"></a>3.6、打开docker-compose.yml</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">cd docker-compose-servicevim docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221458.png" alt="image-20210715165941104"></p>
+<h4 id="3-6-1、点击-i-添加下面内容"><a href="#3-6-1、点击-i-添加下面内容" class="headerlink" title="3.6.1、点击 i 添加下面内容"></a>3.6.1、点击 i <strong>添加下面内容</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">nacos:    image: nacos/nacos-server:<span class="number">1.1</span><span class="number">.4</span>    container_name: nacos    environment:      - PREFER_HOST_MODE=ip      - MODE=standalone      - SPRING_DATASOURCE_PLATFORM=mysql      - MYSQL_MASTER_SERVICE_HOST=<span class="number">123.56</span><span class="number">.79</span><span class="number">.102</span>      - MYSQL_MASTER_SERVICE_PORT=<span class="number">3306</span>      - MYSQL_MASTER_SERVICE_USER=root      - MYSQL_MASTER_SERVICE_PASSWORD=<span class="number">12345</span>     - MYSQL_MASTER_SERVICE_DB_NAME=nacos_config      - MYSQL_SLAVE_SERVICE_HOST=<span class="number">123.56</span><span class="number">.79</span><span class="number">.102</span>      - MYSQL_SLAVE_SERVICE_PORT=<span class="number">3306</span>    volumes:      - /root/docker-compose-service/nacos:/home/nacos/logs    ports:      - <span class="number">8848</span>:<span class="number">8848</span>     restart: always </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221504.png" alt="image-20210716160134177"></p>
+<p><strong>点击ESC</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">：wq	保存退出</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-7、创建并启动nacos"><a href="#3-7、创建并启动nacos" class="headerlink" title="3.7、创建并启动nacos"></a>3.7、创建并启动nacos</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221507.png" alt="image-20210715150813354"></p>
+<h3 id="3-8、查看容器运行状态"><a href="#3-8、查看容器运行状态" class="headerlink" title="3.8、查看容器运行状态"></a>3.8、查看容器运行状态</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221510.png" alt="image-20210715150941273"></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221514.png" alt="image-20210715151200638"></p>
+<h3 id="3-9、访问测试"><a href="#3-9、访问测试" class="headerlink" title="3.9、访问测试"></a>3.9、访问测试</h3><p>在浏览器访问 <span class="exturl" data-url="aHR0cDovL2lwOjg4NDgvbmFjb3MvaW5kZXguaHRtbA==">http://ip:8848/nacos/index.html<i class="fa fa-external-link-alt"></i></span><br>默认登录账号 nacos/nacos</p>
+<h3 id="3-10、可以查看启动日志"><a href="#3-10、可以查看启动日志" class="headerlink" title="3.10、可以查看启动日志"></a>3.10、可以查看启动日志</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose logs -f</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四、docker-compose常用命令"><a href="#四、docker-compose常用命令" class="headerlink" title="四、docker-compose常用命令"></a>四、docker-compose常用命令</h2><table>
+<thead>
+<tr>
+<th>docker-compose up -d</th>
+<th>创建容器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>docker-compose down</td>
+<td>删除容器</td>
+</tr>
+<tr>
+<td>docker-compose start</td>
+<td>开始运行</td>
+</tr>
+<tr>
+<td>docker-compose stop</td>
+<td>结束运行</td>
+</tr>
+</tbody></table>
+<h2 id="五、删除容器和镜像"><a href="#五、删除容器和镜像" class="headerlink" title="五、删除容器和镜像"></a>五、删除容器和镜像</h2><p>如果安装出错，要删除所有容器和nacos_config数据库重头再来</p>
+<h3 id="5-1、删除容器"><a href="#5-1、删除容器" class="headerlink" title="5.1、删除容器"></a>5.1、删除容器</h3><table>
+<thead>
+<tr>
+<th>docker ps</th>
+<th>查看正在运行的镜像</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>docker-compose stop</td>
+<td>结束运行</td>
+</tr>
+<tr>
+<td>docker-compose down</td>
+<td>删除容器</td>
+</tr>
+<tr>
+<td>docker ps -a</td>
+<td>查看运行过的容器</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221518.png" alt="image-20210715154441619"></p>
+<h3 id="5-2、删除镜像"><a href="#5-2、删除镜像" class="headerlink" title="5.2、删除镜像"></a>5.2、删除镜像</h3><p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221522.png" alt="image-20210715154919219"></p>
+<table>
+<thead>
+<tr>
+<th>docker images</th>
+<th>查看已经安装了的镜像</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>docker rmi <IMAGE id></IMAGE></td>
+<td>根据镜像ID删除镜像</td>
+</tr>
+<tr>
+<td>docker rmi <IMAGE id>   <IMAGE id>    …</IMAGE></IMAGE></td>
+<td>根据镜像ID批量删除镜像</td>
+</tr>
+<tr>
+<td>docker ps -a</td>
+<td>查看运行过的容器</td>
+</tr>
+</tbody></table>
+<h3 id="5-3、同时删除对应的文件"><a href="#5-3、同时删除对应的文件" class="headerlink" title="5.3、同时删除对应的文件"></a>5.3、同时删除对应的文件</h3><p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221530.png" alt="image-20210715190104529"></p>
+<h3 id="5-4、删除对应数据库"><a href="#5-4、删除对应数据库" class="headerlink" title="5.4、删除对应数据库"></a>5.4、删除对应数据库</h3><p>如果访问不了nacos, 就连同把nacos_config数据库删了重头再来亿遍，会成功的</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210717221534.png" alt="image-20210715194830684"></p>
 ]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
       <tags>
-        <tag>后端</tag>
+        <tag>docker</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/06/24/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>javaWeb</title>
-    <url>/2021/06/23/javaWeb/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>springBoot</title>
-    <url>/2021/06/23/springBoot/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>springCloud</title>
-    <url>/2021/06/23/springCloud/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>使用vscode打开一个前端项目的流程</title>
-    <url>/2021/06/23/%E4%BD%BF%E7%94%A8vscode%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
