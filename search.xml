@@ -775,7 +775,7 @@
 <p>卸载其他自己安装的jdk直接使用<font color="red">rpm -e java-xxxx</font>即</p>
 ]]></content>
       <tags>
-        <tag>docker,docker-compose</tag>
+        <tag>docker-compose,docker</tag>
       </tags>
   </entry>
 </search>
