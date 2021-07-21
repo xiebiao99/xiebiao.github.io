@@ -463,7 +463,7 @@
 
 <p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210721001529.png"></p>
 <p>vim进入文件修改虚拟机最小内存</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">vim /<span class="selector-tag">var</span>/lib/docker/overlay2/<span class="number">49</span>a2b650efb59c15193c66816a5c5295a3bed005651073e86d60c4ee179b0020/merged/usr/share/elasticsearch/config/jvm<span class="selector-class">.options</span></span><br><span class="line"></span><br><span class="line">vim </span><br><span class="line">/<span class="selector-tag">var</span>/lib/docker/overlay2/<span class="number">6</span>ca0cfbb248af40428cbe5b9112fc76b07dcc9155c7921f5bae36e1e29dcce89/diff/usr/share/elasticsearch/config/jvm<span class="selector-class">.options</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">vim /<span class="selector-tag">var</span>/lib/docker/overlay2/<span class="number">49</span>a2b650efb59c15193c66816a5c5295a3bed005651073e86d60c4ee179b0020/merged/usr/share/elasticsearch/config/jvm<span class="selector-class">.options</span></span><br><span class="line"></span><br><span class="line">vi /<span class="selector-tag">var</span>/lib/docker/overlay2/<span class="number">6</span>ca0cfbb248af40428cbe5b9112fc76b07dcc9155c7921f5bae36e1e29dcce89/diff/usr/share/elasticsearch/config/jvm<span class="selector-class">.options</span></span><br></pre></td></tr></table></figure>
 
 <p><font color="orange">找到-Xms属性，修改成512m</font>（我的elasticsearch:7.4.2默认为1g）</p>
 <p>保存并退出<br>vim中按i进入编辑模式，按ESC退出编辑模式，按：进入命令模式，然后在底部命令行输入w为保存，q为退出，q!为强制退出。</p>
