@@ -209,6 +209,913 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiebiao99.github.io/2019/01/25/Mysql%E7%B3%BB%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar/avatar.jfif">
+      <meta itemprop="name" content="Xie Biao">
+      <meta itemprop="description" content="以梦为马，不负韶华！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xie Biao's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/25/Mysql%E7%B3%BB%E5%88%97/" class="post-title-link" itemprop="url">Mysql系列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-25 22:03:10" itemprop="dateCreated datePublished" datetime="2019-01-25T22:03:10+08:00">2019-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-25 22:03:38" itemprop="dateModified" datetime="2021-07-25T22:03:38+08:00">2021-07-25</time>
+              </span>
+
+          
+            <span id="/2019/01/25/Mysql%E7%B3%BB%E5%88%97/" class="post-meta-item leancloud_visitors" data-flag-title="Mysql系列" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="初识MySQL"><a href="#初识MySQL" class="headerlink" title="初识MySQL"></a>初识MySQL</h2><blockquote>
+<p>为什么学习数据库</p>
+</blockquote>
+<p>1、岗位技能需求</p>
+<p>2、现在的世界,得数据者得天下</p>
+<p>3、存储数据的方法</p>
+<p>4、程序,网站中,大量数据如何长久保存?</p>
+<p>5、<strong>数据库是几乎软件体系中最核心的一个存在。</strong></p>
+<blockquote>
+<p>什么是数据库</p>
+</blockquote>
+<p>数据库 ( <strong>DataBase</strong> , 简称<strong>DB</strong> )</p>
+<p><strong>概念</strong> : 长期存放在计算机内,有组织,可共享的大量数据的集合,是一个数据 “仓库”</p>
+<p><strong>作用</strong> : 保存,并能安全管理数据(如:增删改查等),减少冗余…</p>
+<p><strong>数据库总览 :</strong></p>
+<ul>
+<li><p>关系型数据库 ( SQL )</p>
+</li>
+<li><ul>
+<li>MySQL , Oracle , SQL Server , SQLite , DB2 , …</li>
+<li>关系型数据库通过外键关联来建立表与表之间的关系</li>
+</ul>
+</li>
+<li><p>非关系型数据库 ( NOSQL )</p>
+</li>
+<li><ul>
+<li>Redis , MongoDB , …</li>
+<li>非关系型数据库通常指数据以对象的形式存储在数据库中，而对象之间的关系通过每个对象自身的属性来决定</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>什么是DBMS</p>
+</blockquote>
+<p>数据库管理系统 ( <strong>D</strong>ata<strong>B</strong>ase <strong>M</strong>anagement <strong>S</strong>ystem )</p>
+<p>数据库管理软件 , 科学组织和存储数据 , 高效地获取和维护数据</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215134.png"></p>
+<p>为什么要说这个呢?</p>
+<p>因为我们要学习的MySQL应该算是一个数据库管理系统.</p>
+<blockquote>
+<p>MySQL简介</p>
+</blockquote>
+<p><img src="/.io//桌面/20210725215201.png"></p>
+<p><strong>概念 :</strong> 是现在<strong>流行</strong>的<strong>开源</strong>的,<strong>免费</strong>的 <strong>关系型</strong>数据库</p>
+<p><strong>历史 :</strong> 由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下产品。</p>
+<p><strong>特点 :</strong> </p>
+<ul>
+<li>免费 , 开源数据库</li>
+<li>小巧 , 功能齐全</li>
+<li>使用便捷</li>
+<li>可运行于Windows或Linux操作系统</li>
+<li>可适用于中小型甚至大型网站应用</li>
+</ul>
+<p><strong>官网 :</strong> <strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubXlzcWwuY29tLw==">https://www.mysql.com/<i class="fa fa-external-link-alt"></i></span></strong></p>
+<blockquote>
+<p>安装MySQL</p>
+</blockquote>
+<p><strong>这里建议大家使用压缩版,安装快,方便.不复杂.</strong></p>
+<p><strong>软件下载</strong></p>
+<p>mysql5.7 64位下载地址:</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2dldC9Eb3dubG9hZHMvTXlTUUwtNS43L215c3FsLTUuNy4xOS13aW54NjQuemlw">https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip<i class="fa fa-external-link-alt"></i></span></p>
+<p>电脑是64位的就下载使用64位版本的！</p>
+<blockquote>
+<p>安装步骤</p>
+</blockquote>
+<p>1、下载后得到zip压缩包.</p>
+<p>2、解压到自己想要安装到的目录，本人解压到的是D:\Environment\mysql-5.7.19</p>
+<p>3、添加环境变量：我的电脑-&gt;属性-&gt;高级-&gt;环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选择PATH,在其后面添加: 你的mysql 安装文件下面的bin文件夹</span><br></pre></td></tr></table></figure>
+
+<p>4、编辑 my.ini 文件 ,注意替换路径位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">basedir=D:\Program Files\mysql-5.7\</span><br><span class="line">datadir=D:\Program Files\mysql-5.7\data\</span><br><span class="line">port=3306</span><br><span class="line">skip-grant-tables</span><br></pre></td></tr></table></figure>
+
+<p>5、启动管理员模式下的CMD，并将路径切换至mysql下的bin目录，然后输入mysqld –install (安装mysql)</p>
+<p>6、再输入  mysqld –initialize-insecure –user=mysql 初始化数据文件</p>
+<p>7、然后再次启动mysql 然后用命令 mysql –u root –p 进入mysql管理界面（密码可为空）</p>
+<p>8、进入界面后更改root密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string=password(&#x27;123456&#x27;) where user=&#x27;root&#x27;and Host = &#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>9、刷新权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>10、修改 my.ini文件删除最后一句skip-grant-tables</p>
+<p>11、重启mysql即可正常使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
+
+<p>12、连接上测试出现以下结果就安装好了</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215301.png"></p>
+<p>一步步去做 , 理论上是没有任何问题的 .</p>
+<p>如果您以前装过,现在需要重装,一定要将环境清理干净 .</p>
+<p>好了,到这里大家都装好了,因为刚接触,所以我们先不学习命令.</p>
+<p>这里给大家推荐一个工具 : <strong>SQLyog</strong> .</p>
+<p>即便有了可视化工具,可是基本的DOS命名大家还是要记住!</p>
+<blockquote>
+<p>SQLyog</p>
+</blockquote>
+<p>可手动操作,管理MySQL数据库的软件工具</p>
+<p>特点 : 简洁 , 易用 , 图形化</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215320.png"></p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215341.png"></p>
+<p>使用SQLyog管理工具自己完成以下操作 :</p>
+<ul>
+<li><p>连接本地MySQL数据库</p>
+</li>
+<li><p>新建MySchool数据库</p>
+</li>
+<li><ul>
+<li>字段</li>
+<li>GradeID : int(11) , Primary Key (pk)</li>
+<li>GradeName : varchar(50)</li>
+<li>数据库名称MySchool</li>
+<li>新建数据库表(grade)</li>
+</ul>
+</li>
+</ul>
+<p>在历史记录中可以看到相对应的数据库操作的语句 .</p>
+<blockquote>
+<p>连接数据库</p>
+</blockquote>
+<p>打开MySQL命令窗口</p>
+<ul>
+<li>在DOS命令行窗口进入 <strong>安装目录\mysql\bin</strong></li>
+<li>可设置环境变量，设置了环境变量，可以在任意目录打开！</li>
+</ul>
+<p><strong>连接数据库语句 :</strong> mysql -h 服务器主机地址 -u 用户名 -p 用户密码</p>
+<p>注意 : -p后面不能加空格,否则会被当做密码的内容,导致登录失败 !</p>
+<p><strong>几个基本的数据库操作命令 :</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">update user set password=password(&#x27;123456&#x27;)where user=&#x27;root&#x27;; 修改密码</span><br><span class="line">flush privileges; 刷新数据库</span><br><span class="line">show databases; 显示所有数据库</span><br><span class="line">use dbname；打开某个数据库</span><br><span class="line">show tables; 显示数据库mysql中所有的表</span><br><span class="line">describe user; 显示表mysql数据库中user表的列信息</span><br><span class="line">create database name; 创建数据库</span><br><span class="line">use databasename; 选择数据库</span><br><span class="line"></span><br><span class="line">exit; 退出Mysql</span><br><span class="line">? 命令关键词 : 寻求帮助</span><br><span class="line">-- 表示注释</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL02：数据库操作"><a href="#MySQL02：数据库操作" class="headerlink" title="MySQL02：数据库操作"></a>MySQL02：数据库操作</h2><p><strong><font color="red">数据库操作</font></strong></p>
+<h3 id="结构化查询语句分类"><a href="#结构化查询语句分类" class="headerlink" title="结构化查询语句分类"></a>结构化查询语句分类</h3><p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215450.png"></p>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><blockquote>
+<p>命令行操作数据库</p>
+</blockquote>
+<p>创建数据库 :  create database [if not exists] 数据库名;</p>
+<p>删除数据库 : drop database [if exists] 数据库名;</p>
+<p>查看数据库 : show databases;</p>
+<p>使用数据库 : use 数据库名;</p>
+<blockquote>
+<p>对比工具操作数据库</p>
+</blockquote>
+<p><strong>学习方法：</strong></p>
+<ul>
+<li>对照SQLyog工具自动生成的语句学习</li>
+<li>固定语法中的单词需要记忆</li>
+<li><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215509.png"></li>
+</ul>
+<h3 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h3><p>属于DDL的一种，语法 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table [if not exists] `表名`(</span><br><span class="line">   &#x27;字段名1&#x27; 列类型 [属性][索引][注释],</span><br><span class="line">   &#x27;字段名2&#x27; 列类型 [属性][索引][注释],</span><br><span class="line">  #...</span><br><span class="line">   &#x27;字段名n&#x27; 列类型 [属性][索引][注释]</span><br><span class="line">)[表类型][表字符集][注释];</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明 :</strong> 反引号用于区别MySQL保留字与普通字符而引入的 (键盘esc下面的键).</p>
+<h3 id="数据值和列类型"><a href="#数据值和列类型" class="headerlink" title="数据值和列类型"></a>数据值和列类型</h3><p>列类型 : 规定数据库中该列存放的数据类型</p>
+<blockquote>
+<p>数值类型</p>
+</blockquote>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215545.png"></p>
+<blockquote>
+<p>字符串类型</p>
+</blockquote>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215559.png"></p>
+<blockquote>
+<p>日期和时间型数值类型</p>
+</blockquote>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+<blockquote>
+<p>NULL值</p>
+</blockquote>
+<ul>
+<li>理解为 “没有值” 或 “未知值”</li>
+<li>不要用NULL进行算术运算 , 结果仍为NULL</li>
+</ul>
+<h3 id="数据字段属性"><a href="#数据字段属性" class="headerlink" title="数据字段属性"></a>数据字段属性</h3><p><strong>UnSigned</strong></p>
+<ul>
+<li>无符号的</li>
+<li>声明该数据列不允许负数 .</li>
+</ul>
+<p><strong>ZEROFILL</strong></p>
+<ul>
+<li>0填充的</li>
+<li>不足位数的用0来填充 , 如int(3),5则为005</li>
+</ul>
+<p><strong>Auto_InCrement</strong></p>
+<ul>
+<li><p>自动增长的 , 每添加一条数据 , 自动在上一个记录数上加 1(默认)</p>
+</li>
+<li><p>通常用于设置<strong>主键</strong> , 且为整数类型</p>
+</li>
+<li><p>可定义起始值和步长</p>
+</li>
+<li><ul>
+<li>当前表设置步长(AUTO_INCREMENT=100) : 只影响当前表</li>
+<li>SET @@auto_increment_increment=5 ; 影响所有使用自增的表(全局)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NULL 和 NOT NULL</strong></p>
+<ul>
+<li>默认为NULL , 即没有插入该列的数值</li>
+<li>如果设置为NOT NULL , 则该列必须有值</li>
+</ul>
+<p><strong>DEFAULT</strong></p>
+<ul>
+<li>默认的</li>
+<li>用于设置默认值</li>
+<li>例如,性别字段,默认为”男” , 否则为 “女” ; 若无指定该列的值 , 则默认值为”男”的值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-- 目标 : 创建一个school数据库</span><br><span class="line">-- 创建学生表(列,字段)</span><br><span class="line">-- 学号int 登录密码varchar(20) 姓名,性别varchar(2),出生日期(datatime),家庭住址,email</span><br><span class="line">-- 创建表之前 , 一定要先选择数据库</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS `student` (</span><br><span class="line">`id` int(4) NOT NULL AUTO_INCREMENT COMMENT &#x27;学号&#x27;,</span><br><span class="line">`name` varchar(30) NOT NULL DEFAULT &#x27;匿名&#x27; COMMENT &#x27;姓名&#x27;,</span><br><span class="line">`pwd` varchar(20) NOT NULL DEFAULT &#x27;123456&#x27; COMMENT &#x27;密码&#x27;,</span><br><span class="line">`sex` varchar(2) NOT NULL DEFAULT &#x27;男&#x27; COMMENT &#x27;性别&#x27;,</span><br><span class="line">`birthday` datetime DEFAULT NULL COMMENT &#x27;生日&#x27;,</span><br><span class="line">`address` varchar(100) DEFAULT NULL COMMENT &#x27;地址&#x27;,</span><br><span class="line">`email` varchar(50) DEFAULT NULL COMMENT &#x27;邮箱&#x27;,</span><br><span class="line">PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">-- 查看数据库的定义</span><br><span class="line">SHOW CREATE DATABASE school;</span><br><span class="line">-- 查看数据表的定义</span><br><span class="line">SHOW CREATE TABLE student;</span><br><span class="line">-- 显示表结构</span><br><span class="line">DESC student;  -- 设置严格检查模式(不能容错了)SET sql_mode=&#x27;STRICT_TRANS_TABLES&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据表的类型"><a href="#数据表的类型" class="headerlink" title="数据表的类型"></a>数据表的类型</h3><blockquote>
+<p>设置数据表的类型</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">   -- 省略一些代码</span><br><span class="line">   -- Mysql注释</span><br><span class="line">   -- 1. # 单行注释</span><br><span class="line">   -- 2. /*...*/ 多行注释</span><br><span class="line">)ENGINE = MyISAM (or InnoDB)</span><br><span class="line"></span><br><span class="line">-- 查看mysql所支持的引擎类型 (表类型)</span><br><span class="line">SHOW ENGINES;</span><br></pre></td></tr></table></figure>
+
+<p>MySQL的数据表的类型 : <strong>MyISAM</strong> , <strong>InnoDB</strong> , HEAP , BOB , CSV等…</p>
+<p>常见的 MyISAM 与 InnoDB 类型：</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215621.png"></p>
+<p>经验 ( 适用场合 )  :</p>
+<ul>
+<li>适用 MyISAM : 节约空间及相应速度</li>
+<li>适用 InnoDB : 安全性 , 事务处理及多用户操作数据表</li>
+</ul>
+<blockquote>
+<p>数据表的存储位置</p>
+</blockquote>
+<ul>
+<li><p>MySQL数据表以文件方式存放在磁盘中</p>
+</li>
+<li><ul>
+<li>包括表文件 , 数据文件 , 以及数据库的选项文件</li>
+<li>位置 : Mysql安装目录\data\下存放数据表 . 目录名对应数据库名 , 该目录下文件名对应数据表 .</li>
+</ul>
+</li>
+<li><p>注意 :</p>
+</li>
+<li><ul>
+<li><p>* . frm – 表结构定义文件</p>
+</li>
+<li><p>* . MYD – 数据文件 ( data )</p>
+</li>
+<li><p>* . MYI – 索引文件 ( index )</p>
+</li>
+<li><p>InnoDB类型数据表只有一个 *.frm文件 , 以及上一级目录的ibdata1文件</p>
+</li>
+<li><p>MyISAM类型数据表对应三个文件 :</p>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>设置数据表字符集</p>
+</blockquote>
+<p>我们可为数据库,数据表,数据列设定不同的字符集，设定方法 :</p>
+<ul>
+<li>创建时通过命令来设置 , 如 : CREATE TABLE 表名()CHARSET = utf8;</li>
+<li>如无设定 , 则根据MySQL数据库配置文件 my.ini 中的参数设定</li>
+</ul>
+<h3 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h3><blockquote>
+<p>修改表 ( ALTER TABLE )</p>
+</blockquote>
+<p>修改表名 :ALTER TABLE 旧表名 RENAME AS 新表名</p>
+<p>添加字段 : ALTER TABLE 表名 ADD字段名 列属性[属性]</p>
+<p>修改字段 :</p>
+<ul>
+<li>ALTER TABLE 表名 MODIFY 字段名 列类型[属性]</li>
+<li>ALTER TABLE 表名 CHANGE 旧字段名 新字段名 列属性[属性]</li>
+</ul>
+<p>删除字段 :  ALTER TABLE 表名 DROP 字段名</p>
+<blockquote>
+<p>删除数据表</p>
+</blockquote>
+<p>语法：DROP TABLE [IF EXISTS] 表名</p>
+<ul>
+<li>IF EXISTS为可选 , 判断是否存在该数据表</li>
+<li>如删除不存在的数据表会抛出错误</li>
+</ul>
+<blockquote>
+<p>其他</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. 可用反引号（`）为标识符（库名、表名、字段名、索引、别名）包裹，以避免与关键字重名！中文也可以作为标识符！</span><br><span class="line"></span><br><span class="line">2. 每个库目录存在一个保存当前数据库的选项文件db.opt。</span><br><span class="line"></span><br><span class="line">3. 注释：</span><br><span class="line">  单行注释 # 注释内容</span><br><span class="line">  多行注释 /* 注释内容 */</span><br><span class="line">  单行注释 -- 注释内容       (标准SQL注释风格，要求双破折号后加一空格符（空格、TAB、换行等）)</span><br><span class="line">   </span><br><span class="line">4. 模式通配符：</span><br><span class="line">  _   任意单个字符</span><br><span class="line">  %   任意多个字符，甚至包括零字符</span><br><span class="line">  单引号需要进行转义 \&#x27;</span><br><span class="line">   </span><br><span class="line">5. CMD命令行内的语句结束符可以为 &quot;;&quot;, &quot;\G&quot;, &quot;\g&quot;，仅影响显示结果。其他地方还是用分号结束。delimiter 可修改当前对话的语句结束符。</span><br><span class="line"></span><br><span class="line">6. SQL对大小写不敏感 （关键字）</span><br><span class="line"></span><br><span class="line">7. 清除已有语句：\c</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL03：DML语言"><a href="#MySQL03：DML语言" class="headerlink" title="MySQL03：DML语言"></a>MySQL03：DML语言</h2><p><strong><font color="red">MySQL数据管理</font></strong></p>
+<h3 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h3><blockquote>
+<p>外键概念</p>
+</blockquote>
+<p>如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键。由此可见，外键表示了两个关系之间的相关联系。以另一个关系的外键作主关键字的表被称为<strong>主表</strong>，具有此外键的表被称为主表的<strong>从表</strong>。</p>
+<p>在实际操作中，将一个表的值放入第二个表来表示关联，所使用的值是第一个表的主键值(在必要时可包括复合主键值)。此时，第二个表中保存这些值的属性称为外键(<strong>foreign key</strong>)。</p>
+<p><strong>外键作用</strong></p>
+<p>保持数据<strong>一致性</strong>，<strong>完整性</strong>，主要目的是控制存储在外键表中的数据,<strong>约束</strong>。使两张表形成关联，外键只能引用外表中的列的值或使用空值。</p>
+<blockquote>
+<p>创建外键</p>
+</blockquote>
+<p>建表时指定外键约束</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-- 创建外键的方式一 : 创建子表同时创建外键</span><br><span class="line"></span><br><span class="line">-- 年级表 (id\年级名称)</span><br><span class="line">CREATE TABLE `grade` (</span><br><span class="line">`gradeid` INT(10) NOT NULL AUTO_INCREMENT COMMENT &#x27;年级ID&#x27;,</span><br><span class="line">`gradename` VARCHAR(50) NOT NULL COMMENT &#x27;年级名称&#x27;,</span><br><span class="line">PRIMARY KEY (`gradeid`)</span><br><span class="line">) ENGINE=INNODB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">-- 学生信息表 (学号,姓名,性别,年级,手机,地址,出生日期,邮箱,身份证号)</span><br><span class="line">CREATE TABLE `student` (</span><br><span class="line">`studentno` INT(4) NOT NULL COMMENT &#x27;学号&#x27;,</span><br><span class="line">`studentname` VARCHAR(20) NOT NULL DEFAULT &#x27;匿名&#x27; COMMENT &#x27;姓名&#x27;,</span><br><span class="line">`sex` TINYINT(1) DEFAULT &#x27;1&#x27; COMMENT &#x27;性别&#x27;,</span><br><span class="line">`gradeid` INT(10) DEFAULT NULL COMMENT &#x27;年级&#x27;,</span><br><span class="line">`phoneNum` VARCHAR(50) NOT NULL COMMENT &#x27;手机&#x27;,</span><br><span class="line">`address` VARCHAR(255) DEFAULT NULL COMMENT &#x27;地址&#x27;,</span><br><span class="line">`borndate` DATETIME DEFAULT NULL COMMENT &#x27;生日&#x27;,</span><br><span class="line">`email` VARCHAR(50) DEFAULT NULL COMMENT &#x27;邮箱&#x27;,</span><br><span class="line">`idCard` VARCHAR(18) DEFAULT NULL COMMENT &#x27;身份证号&#x27;,</span><br><span class="line">PRIMARY KEY (`studentno`),</span><br><span class="line">KEY `FK_gradeid` (`gradeid`),</span><br><span class="line">CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`)</span><br><span class="line">) ENGINE=INNODB DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+
+<p>建表后修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 创建外键方式二 : 创建子表完毕后,修改子表添加外键</span><br><span class="line">ALTER TABLE `student`</span><br><span class="line">ADD CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`);</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>删除外键</p>
+</blockquote>
+<p>操作：删除 grade 表，发现报错</p>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215644.png"></p>
+<p><strong>注意</strong> : 删除具有主外键关系的表时 , 要先删子表 , 后删主表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 删除外键</span><br><span class="line">ALTER TABLE student DROP FOREIGN KEY FK_gradeid;</span><br><span class="line">-- 发现执行完上面的,索引还在,所以还要删除索引</span><br><span class="line">-- 注:这个索引是建立外键的时候默认生成的</span><br><span class="line">ALTER TABLE student DROP INDEX FK_gradeid;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="DML语言"><a href="#DML语言" class="headerlink" title="DML语言"></a>DML语言</h3><p><strong>数据库意义</strong> ： 数据存储、数据管理</p>
+<p><strong>管理数据库数据方法：</strong></p>
+<ul>
+<li>通过SQLyog等管理工具管理数据库数据</li>
+<li>通过<strong>DML语句</strong>管理数据库数据</li>
+</ul>
+<p><strong>DML语言</strong>  ：数据操作语言</p>
+<ul>
+<li><p>用于操作数据库对象中所包含的数据</p>
+</li>
+<li><p>包括 :</p>
+</li>
+<li><ul>
+<li>INSERT (添加数据语句)</li>
+<li>UPDATE (更新数据语句)</li>
+<li>DELETE (删除数据语句)</li>
+</ul>
+</li>
+</ul>
+<h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><blockquote>
+<p>INSERT命令</p>
+</blockquote>
+<p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名[(字段1,字段2,字段3,...)] VALUES(&#x27;值1&#x27;,&#x27;值2&#x27;,&#x27;值3&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意 :</strong> </p>
+<ul>
+<li>字段或值之间用英文逗号隔开 .</li>
+<li>‘ 字段1,字段2…’ 该部分可省略 , 但添加的值务必与表结构,数据列,顺序相对应,且数量一致 .</li>
+<li>可同时插入多条数据 , values 后用英文逗号隔开 .</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 使用语句如何增加语句?</span><br><span class="line">-- 语法 : INSERT INTO 表名[(字段1,字段2,字段3,...)] VALUES(&#x27;值1&#x27;,&#x27;值2&#x27;,&#x27;值3&#x27;)</span><br><span class="line">INSERT INTO grade(gradename) VALUES (&#x27;大一&#x27;);</span><br><span class="line"></span><br><span class="line">-- 主键自增,那能否省略呢?</span><br><span class="line">INSERT INTO grade VALUES (&#x27;大二&#x27;);</span><br><span class="line"></span><br><span class="line">-- 查询:INSERT INTO grade VALUE (&#x27;大二&#x27;)错误代码：1136</span><br><span class="line">Column count doesn`t match value count at row 1</span><br><span class="line"></span><br><span class="line">-- 结论:&#x27;字段1,字段2...&#x27;该部分可省略 , 但添加的值务必与表结构,数据列,顺序相对应,且数量一致.</span><br><span class="line"></span><br><span class="line">-- 一次插入多条数据</span><br><span class="line">INSERT INTO grade(gradename) VALUES (&#x27;大三&#x27;),(&#x27;大四&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>练习题目</strong> </p>
+<p>自己使用INSERT语句为课程表subject添加数据 . 使用到外键.</p>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><blockquote>
+<p>update命令</p>
+</blockquote>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE 表名 SET column_name=value [,column_name2=value2,...] [WHEREcondition];</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意 :</strong> </p>
+<ul>
+<li>column_name 为要更改的数据列</li>
+<li>value 为修改后的数据 , 可以为变量 , 具体指 , 表达式或者嵌套的SELECT结果</li>
+<li>condition 为筛选条件 , 如不指定则修改该表的所有列数据</li>
+</ul>
+<blockquote>
+<p>where条件子句</p>
+</blockquote>
+<p>可以简单的理解为 : 有条件地从表中筛选数据</p>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片">测试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 修改年级信息</span><br><span class="line">UPDATE grade SET gradename = &#x27;高中&#x27; WHERE gradeid = 1;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><blockquote>
+<p>DELETE命令</p>
+</blockquote>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名 [WHERE condition];</span><br></pre></td></tr></table></figure>
+
+<p>注意：condition为筛选条件 , 如不指定则删除该表的所有列数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 删除最后一个数据</span><br><span class="line">DELETE FROM grade WHERE gradeid = 5</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>TRUNCATE命令</p>
+</blockquote>
+<p>作用：用于完全清空表数据 , 但表结构 , 索引 , 约束等不变 ;</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE [TABLE] table_name;</span><br><span class="line"></span><br><span class="line">-- 清空年级表</span><br><span class="line">TRUNCATE grade</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：区别于DELETE命令</strong></p>
+<ul>
+<li><p>相同 : 都能删除数据 , 不删除表结构 , 但TRUNCATE速度更快</p>
+</li>
+<li><p>不同 :</p>
+</li>
+<li><ul>
+<li>使用TRUNCATE TABLE 重新设置AUTO_INCREMENT计数器</li>
+<li>使用TRUNCATE TABLE不会对事务有影响 （事务后面会说）</li>
+</ul>
+</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-- 创建一个测试表</span><br><span class="line">CREATE TABLE `test` (</span><br><span class="line">`id` INT(4) NOT NULL AUTO_INCREMENT,</span><br><span class="line">`coll` VARCHAR(20) NOT NULL,</span><br><span class="line">PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=INNODB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">-- 插入几个测试数据</span><br><span class="line">INSERT INTO test(coll) VALUES(&#x27;row1&#x27;),(&#x27;row2&#x27;),(&#x27;row3&#x27;);</span><br><span class="line"></span><br><span class="line">-- 删除表数据(不带where条件的delete)</span><br><span class="line">DELETE FROM test;</span><br><span class="line">-- 结论:如不指定Where则删除该表的所有列数据,自增当前值依然从原来基础上进行,会记录日志.</span><br><span class="line"></span><br><span class="line">-- 删除表数据(truncate)</span><br><span class="line">TRUNCATE TABLE test;</span><br><span class="line">-- 结论:truncate删除数据,自增当前值会恢复到初始值重新开始;不会记录日志.</span><br><span class="line"></span><br><span class="line">-- 同样使用DELETE清空不同引擎的数据库表数据.重启数据库服务后</span><br><span class="line">-- InnoDB : 自增列从初始值重新开始 (因为是存储在内存中,断电即失)</span><br><span class="line">-- MyISAM : 自增列依然从上一个自增数据基础上开始 (存在文件中,不会丢失)</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL04：使用DQL查询数据"><a href="#MySQL04：使用DQL查询数据" class="headerlink" title="MySQL04：使用DQL查询数据"></a>MySQL04：使用DQL查询数据</h2><p>使用DQL查询数据</p>
+<h3 id="DQL语言"><a href="#DQL语言" class="headerlink" title="DQL语言"></a>DQL语言</h3><p><strong>DQL( Data Query Language 数据查询语言 )</strong></p>
+<ul>
+<li>查询数据库数据 , 如<strong>SELECT</strong>语句</li>
+<li>简单的单表查询或多表的复杂查询和嵌套查询</li>
+<li>是数据库语言中最核心,最重要的语句</li>
+<li>使用频率最高的语句</li>
+</ul>
+<blockquote>
+<p>SELECT语法</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT [ALL | DISTINCT]</span><br><span class="line">&#123;* | table.* | [table.field1[as alias1][,table.field2[as alias2]][,...]]&#125;</span><br><span class="line">FROM table_name [as table_alias]</span><br><span class="line">  [left | right | inner join table_name2]  -- 联合查询</span><br><span class="line">  [WHERE ...]  -- 指定结果需满足的条件</span><br><span class="line">  [GROUP BY ...]  -- 指定结果按照哪几个字段来分组</span><br><span class="line">  [HAVING]  -- 过滤分组的记录必须满足的次要条件</span><br><span class="line">  [ORDER BY ...]  -- 指定查询记录按一个或多个条件排序</span><br><span class="line">  [LIMIT &#123;[offset,]row_count | row_countOFFSET offset&#125;];</span><br><span class="line">   -- 指定查询的记录从哪条至哪条</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意 : [ ] 括号代表可选的 , { }括号代表必选得</strong></p>
+<h3 id="指定查询字段"><a href="#指定查询字段" class="headerlink" title="指定查询字段"></a>指定查询字段</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 查询表中所有的数据列结果 , 采用 **&quot; \* &quot;** 符号; 但是效率低，不推荐 .</span><br><span class="line"></span><br><span class="line">-- 查询所有学生信息</span><br><span class="line">SELECT * FROM student;</span><br><span class="line"></span><br><span class="line">-- 查询指定列(学号 , 姓名)</span><br><span class="line">SELECT studentno,studentname FROM student;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>AS 子句作为别名</p>
+</blockquote>
+<p>作用：</p>
+<ul>
+<li>可给数据列取一个新别名</li>
+<li>可给表取一个新别名</li>
+<li>可把经计算或总结的结果用另一个新名称来代替</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 这里是为列取别名(当然as关键词可以省略)</span><br><span class="line">SELECT studentno AS 学号,studentname AS 姓名 FROM student;</span><br><span class="line"></span><br><span class="line">-- 使用as也可以为表取别名</span><br><span class="line">SELECT studentno AS 学号,studentname AS 姓名 FROM student AS s;</span><br><span class="line"></span><br><span class="line">-- 使用as,为查询结果取一个新名字</span><br><span class="line">-- CONCAT()函数拼接字符串</span><br><span class="line">SELECT CONCAT(&#x27;姓名:&#x27;,studentname) AS 新姓名 FROM student;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>DISTINCT关键字的使用</p>
+</blockquote>
+<p>作用 : 去掉SELECT查询返回的记录结果中重复的记录 ( 返回所有列的值都相同 ) , 只返回一条</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- # 查看哪些同学参加了考试(学号) 去除重复项</span><br><span class="line">SELECT * FROM result; -- 查看考试成绩</span><br><span class="line">SELECT studentno FROM result; -- 查看哪些同学参加了考试</span><br><span class="line">SELECT DISTINCT studentno FROM result; -- 了解:DISTINCT 去除重复项 , (默认是ALL)</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>使用表达式的列</p>
+</blockquote>
+<p>数据库中的表达式 : 一般由文本值 , 列值 , NULL , 函数和操作符等组成</p>
+<p>应用场景 :</p>
+<ul>
+<li><p>SELECT语句返回结果列中使用</p>
+</li>
+<li><p>SELECT语句中的ORDER BY , HAVING等子句中使用</p>
+</li>
+<li><p>DML语句中的 where 条件语句中使用表达式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- selcet查询中可以使用表达式</span><br><span class="line">SELECT @@auto_increment_increment; -- 查询自增步长</span><br><span class="line">SELECT VERSION(); -- 查询版本号</span><br><span class="line">SELECT 100*3-1 AS 计算结果; -- 表达式</span><br><span class="line"></span><br><span class="line">-- 学员考试成绩集体提分一分查看</span><br><span class="line">SELECT studentno,StudentResult+1 AS &#x27;提分后&#x27; FROM result;</span><br></pre></td></tr></table></figure></li>
+<li><p>避免SQL返回结果中包含 ‘ . ‘ , ‘ * ‘ 和括号等干扰开发语言程序.</p>
+</li>
+</ul>
+<h3 id="where条件语句"><a href="#where条件语句" class="headerlink" title="where条件语句"></a>where条件语句</h3><p>作用：用于检索数据表中 符合条件 的记录</p>
+<p>搜索条件可由一个或多个逻辑表达式组成 , 结果一般为真或假.</p>
+<blockquote>
+<p>逻辑操作符</p>
+</blockquote>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">-- 满足条件的查询(where)</span><br><span class="line">SELECT Studentno,StudentResult FROM result;</span><br><span class="line"></span><br><span class="line">-- 查询考试成绩在95-100之间的</span><br><span class="line">SELECT Studentno,StudentResult</span><br><span class="line">FROM result</span><br><span class="line">WHERE StudentResult&gt;=95 AND StudentResult&lt;=100;</span><br><span class="line"></span><br><span class="line">-- AND也可以写成 &amp;&amp;</span><br><span class="line">SELECT Studentno,StudentResult</span><br><span class="line">FROM result</span><br><span class="line">WHERE StudentResult&gt;=95 &amp;&amp; StudentResult&lt;=100;</span><br><span class="line"></span><br><span class="line">-- 模糊查询(对应的词:精确查询)</span><br><span class="line">SELECT Studentno,StudentResult</span><br><span class="line">FROM result</span><br><span class="line">WHERE StudentResult BETWEEN 95 AND 100;</span><br><span class="line"></span><br><span class="line">-- 除了1000号同学,要其他同学的成绩</span><br><span class="line">SELECT studentno,studentresult</span><br><span class="line">FROM result</span><br><span class="line">WHERE studentno!=1000;</span><br><span class="line"></span><br><span class="line">-- 使用NOT</span><br><span class="line">SELECT studentno,studentresult</span><br><span class="line">FROM result</span><br><span class="line">WHERE NOT studentno=1000;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>模糊查询 ：比较操作符</p>
+</blockquote>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+<p>注意：</p>
+<ul>
+<li>数值数据类型的记录之间才能进行算术运算 ;</li>
+<li>相同数据类型的数据之间才能进行比较 ;</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">-- 模糊查询 between and \ like \ in \ null</span><br><span class="line"></span><br><span class="line">-- =============================================</span><br><span class="line">-- LIKE</span><br><span class="line">-- =============================================</span><br><span class="line">-- 查询姓刘的同学的学号及姓名</span><br><span class="line">-- like结合使用的通配符 : % (代表0到任意个字符) _ (一个字符)</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;刘%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 查询姓刘的同学,后面只有一个字的</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;刘_&#x27;;</span><br><span class="line"></span><br><span class="line">-- 查询姓刘的同学,后面只有两个字的</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;刘__&#x27;;</span><br><span class="line"></span><br><span class="line">-- 查询姓名中含有 嘉 字的</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentname LIKE &#x27;%嘉%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 查询姓名中含有特殊字符的需要使用转义符号 &#x27;\&#x27;</span><br><span class="line">-- 自定义转义符关键字: ESCAPE &#x27;:&#x27;</span><br><span class="line"></span><br><span class="line">-- =============================================</span><br><span class="line">-- IN</span><br><span class="line">-- =============================================</span><br><span class="line">-- 查询学号为1000,1001,1002的学生姓名</span><br><span class="line">SELECT studentno,studentname FROM student</span><br><span class="line">WHERE studentno IN (1000,1001,1002);</span><br><span class="line"></span><br><span class="line">-- 查询地址在北京,南京,河南洛阳的学生</span><br><span class="line">SELECT studentno,studentname,address FROM student</span><br><span class="line">WHERE address IN (&#x27;北京&#x27;,&#x27;南京&#x27;,&#x27;河南洛阳&#x27;);</span><br><span class="line"></span><br><span class="line">-- =============================================</span><br><span class="line">-- NULL 空</span><br><span class="line">-- =============================================</span><br><span class="line">-- 查询出生日期没有填写的同学</span><br><span class="line">-- 不能直接写=NULL , 这是代表错误的 , 用 is null</span><br><span class="line">SELECT studentname FROM student</span><br><span class="line">WHERE BornDate IS NULL;</span><br><span class="line"></span><br><span class="line">-- 查询出生日期填写的同学</span><br><span class="line">SELECT studentname FROM student</span><br><span class="line">WHERE BornDate IS NOT NULL;</span><br><span class="line"></span><br><span class="line">-- 查询没有写家庭住址的同学(空字符串不等于null)</span><br><span class="line">SELECT studentname FROM student</span><br><span class="line">WHERE Address=&#x27;&#x27; OR Address IS NULL;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><blockquote>
+<p>JOIN 对比</p>
+</blockquote>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+<p>七种Join：</p>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">连接查询</span><br><span class="line">   如需要多张数据表的数据进行查询,则可通过连接运算符实现多个查询</span><br><span class="line">内连接 inner join</span><br><span class="line">   查询两个表中的结果集中的交集</span><br><span class="line">外连接 outer join</span><br><span class="line">   左外连接 left join</span><br><span class="line">       (以左表作为基准,右边表来一一匹配,匹配不上的,返回左表的记录,右表以NULL填充)</span><br><span class="line">   右外连接 right join</span><br><span class="line">       (以右表作为基准,左边表来一一匹配,匹配不上的,返回右表的记录,左表以NULL填充)</span><br><span class="line">       </span><br><span class="line">等值连接和非等值连接</span><br><span class="line"></span><br><span class="line">自连接</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">-- 查询参加了考试的同学信息(学号,学生姓名,科目编号,分数)</span><br><span class="line">SELECT * FROM student;</span><br><span class="line">SELECT * FROM result;</span><br><span class="line"></span><br><span class="line">/*思路:</span><br><span class="line">(1):分析需求,确定查询的列来源于两个类,student result,连接查询</span><br><span class="line">(2):确定使用哪种连接查询?(内连接)</span><br><span class="line">*/</span><br><span class="line">SELECT s.studentno,studentname,subjectno,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line"></span><br><span class="line">-- 右连接(也可实现)</span><br><span class="line">SELECT s.studentno,studentname,subjectno,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">RIGHT JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line"></span><br><span class="line">-- 等值连接</span><br><span class="line">SELECT s.studentno,studentname,subjectno,StudentResult</span><br><span class="line">FROM student s , result r</span><br><span class="line">WHERE r.studentno = s.studentno</span><br><span class="line"></span><br><span class="line">-- 左连接 (查询了所有同学,不考试的也会查出来)</span><br><span class="line">SELECT s.studentno,studentname,subjectno,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">LEFT JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line"></span><br><span class="line">-- 查一下缺考的同学(左连接应用场景)</span><br><span class="line">SELECT s.studentno,studentname,subjectno,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">LEFT JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">WHERE StudentResult IS NULL</span><br><span class="line"></span><br><span class="line">-- 思考题:查询参加了考试的同学信息(学号,学生姓名,科目名,分数)</span><br><span class="line">SELECT s.studentno,studentname,subjectname,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON sub.subjectno = r.subjectno</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>自连接</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">自连接</span><br><span class="line">   数据表与自身进行连接</span><br><span class="line"></span><br><span class="line">需求:从一个包含栏目ID , 栏目名称和父栏目ID的表中</span><br><span class="line">    查询父栏目名称和其他子栏目名称</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">-- 创建一个表</span><br><span class="line">CREATE TABLE `category` (</span><br><span class="line">`categoryid` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT &#x27;主题id&#x27;,</span><br><span class="line">`pid` INT(10) NOT NULL COMMENT &#x27;父id&#x27;,</span><br><span class="line">`categoryName` VARCHAR(50) NOT NULL COMMENT &#x27;主题名字&#x27;,</span><br><span class="line">PRIMARY KEY (`categoryid`)</span><br><span class="line">) ENGINE=INNODB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">-- 插入数据</span><br><span class="line">INSERT INTO `category` (`categoryid`, `pid`, `categoryName`)</span><br><span class="line">VALUES(&#x27;2&#x27;,&#x27;1&#x27;,&#x27;信息技术&#x27;),</span><br><span class="line">(&#x27;3&#x27;,&#x27;1&#x27;,&#x27;软件开发&#x27;),</span><br><span class="line">(&#x27;4&#x27;,&#x27;3&#x27;,&#x27;数据库&#x27;),</span><br><span class="line">(&#x27;5&#x27;,&#x27;1&#x27;,&#x27;美术设计&#x27;),</span><br><span class="line">(&#x27;6&#x27;,&#x27;3&#x27;,&#x27;web开发&#x27;),</span><br><span class="line">(&#x27;7&#x27;,&#x27;5&#x27;,&#x27;ps技术&#x27;),</span><br><span class="line">(&#x27;8&#x27;,&#x27;2&#x27;,&#x27;办公信息&#x27;);</span><br><span class="line"></span><br><span class="line">-- 编写SQL语句,将栏目的父子关系呈现出来 (父栏目名称,子栏目名称)</span><br><span class="line">-- 核心思想:把一张表看成两张一模一样的表,然后将这两张表连接查询(自连接)</span><br><span class="line">SELECT a.categoryName AS &#x27;父栏目&#x27;,b.categoryName AS &#x27;子栏目&#x27;</span><br><span class="line">FROM category AS a,category AS b</span><br><span class="line">WHERE a.`categoryid`=b.`pid`</span><br><span class="line"></span><br><span class="line">-- 思考题:查询参加了考试的同学信息(学号,学生姓名,科目名,分数)</span><br><span class="line">SELECT s.studentno,studentname,subjectname,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON sub.subjectno = r.subjectno</span><br><span class="line"></span><br><span class="line">-- 查询学员及所属的年级(学号,学生姓名,年级名)</span><br><span class="line">SELECT studentno AS 学号,studentname AS 学生姓名,gradename AS 年级名称</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN grade g</span><br><span class="line">ON s.`GradeId` = g.`GradeID`</span><br><span class="line"></span><br><span class="line">-- 查询科目及所属的年级(科目名称,年级名称)</span><br><span class="line">SELECT subjectname AS 科目名称,gradename AS 年级名称</span><br><span class="line">FROM SUBJECT sub</span><br><span class="line">INNER JOIN grade g</span><br><span class="line">ON sub.gradeid = g.gradeid</span><br><span class="line"></span><br><span class="line">-- 查询 数据库结构-1 的所有考试结果(学号 学生姓名 科目名称 成绩)</span><br><span class="line">SELECT s.studentno,studentname,subjectname,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON r.subjectno = sub.subjectno</span><br><span class="line">WHERE subjectname=&#x27;数据库结构-1&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="排序和分页"><a href="#排序和分页" class="headerlink" title="排序和分页"></a>排序和分页</h3><p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">/*============== 排序 ================</span><br><span class="line">语法 : ORDER BY</span><br><span class="line">   ORDER BY 语句用于根据指定的列对结果集进行排序。</span><br><span class="line">   ORDER BY 语句默认按照ASC升序对记录进行排序。</span><br><span class="line">   如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。</span><br><span class="line">   </span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">-- 查询 数据库结构-1 的所有考试结果(学号 学生姓名 科目名称 成绩)</span><br><span class="line">-- 按成绩降序排序</span><br><span class="line">SELECT s.studentno,studentname,subjectname,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON r.subjectno = sub.subjectno</span><br><span class="line">WHERE subjectname=&#x27;数据库结构-1&#x27;</span><br><span class="line">ORDER BY StudentResult DESC</span><br><span class="line"></span><br><span class="line">/*============== 分页 ================</span><br><span class="line">语法 : SELECT * FROM table LIMIT [offset,] rows | rows OFFSET offset</span><br><span class="line">好处 : (用户体验,网络传输,查询压力)</span><br><span class="line"></span><br><span class="line">推导:</span><br><span class="line">   第一页 : limit 0,5</span><br><span class="line">   第二页 : limit 5,5</span><br><span class="line">   第三页 : limit 10,5</span><br><span class="line">   ......</span><br><span class="line">   第N页 : limit (pageNo-1)*pageSzie,pageSzie</span><br><span class="line">   [pageNo:页码,pageSize:单页面显示条数]</span><br><span class="line">   </span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">-- 每页显示5条数据</span><br><span class="line">SELECT s.studentno,studentname,subjectname,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON r.subjectno = sub.subjectno</span><br><span class="line">WHERE subjectname=&#x27;数据库结构-1&#x27;</span><br><span class="line">ORDER BY StudentResult DESC , studentno</span><br><span class="line">LIMIT 0,5</span><br><span class="line"></span><br><span class="line">-- 查询 JAVA第一学年 课程成绩前10名并且分数大于80的学生信息(学号,姓名,课程名,分数)</span><br><span class="line">SELECT s.studentno,studentname,subjectname,StudentResult</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON r.studentno = s.studentno</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON r.subjectno = sub.subjectno</span><br><span class="line">WHERE subjectname=&#x27;JAVA第一学年&#x27;</span><br><span class="line">ORDER BY StudentResult DESC</span><br><span class="line">LIMIT 0,10</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/*============== 子查询 ================</span><br><span class="line">什么是子查询?</span><br><span class="line">   在查询语句中的WHERE条件子句中,又嵌套了另一个查询语句</span><br><span class="line">   嵌套查询可由多个子查询组成,求解的方式是由里及外;</span><br><span class="line">   子查询返回的结果一般都是集合,故而建议使用IN关键字;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">-- 查询 数据库结构-1 的所有考试结果(学号,科目编号,成绩),并且成绩降序排列</span><br><span class="line">-- 方法一:使用连接查询</span><br><span class="line">SELECT studentno,r.subjectno,StudentResult</span><br><span class="line">FROM result r</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON r.`SubjectNo`=sub.`SubjectNo`</span><br><span class="line">WHERE subjectname = &#x27;数据库结构-1&#x27;</span><br><span class="line">ORDER BY studentresult DESC;</span><br><span class="line"></span><br><span class="line">-- 方法二:使用子查询(执行顺序:由里及外)</span><br><span class="line">SELECT studentno,subjectno,StudentResult</span><br><span class="line">FROM result</span><br><span class="line">WHERE subjectno=(</span><br><span class="line">   SELECT subjectno FROM `subject`</span><br><span class="line">   WHERE subjectname = &#x27;数据库结构-1&#x27;</span><br><span class="line">)</span><br><span class="line">ORDER BY studentresult DESC;</span><br><span class="line"></span><br><span class="line">-- 查询课程为 高等数学-2 且分数不小于80分的学生的学号和姓名</span><br><span class="line">-- 方法一:使用连接查询</span><br><span class="line">SELECT s.studentno,studentname</span><br><span class="line">FROM student s</span><br><span class="line">INNER JOIN result r</span><br><span class="line">ON s.`StudentNo` = r.`StudentNo`</span><br><span class="line">INNER JOIN `subject` sub</span><br><span class="line">ON sub.`SubjectNo` = r.`SubjectNo`</span><br><span class="line">WHERE subjectname = &#x27;高等数学-2&#x27; AND StudentResult&gt;=80</span><br><span class="line"></span><br><span class="line">-- 方法二:使用连接查询+子查询</span><br><span class="line">-- 分数不小于80分的学生的学号和姓名</span><br><span class="line">SELECT r.studentno,studentname FROM student s</span><br><span class="line">INNER JOIN result r ON s.`StudentNo`=r.`StudentNo`</span><br><span class="line">WHERE StudentResult&gt;=80</span><br><span class="line"></span><br><span class="line">-- 在上面SQL基础上,添加需求:课程为 高等数学-2</span><br><span class="line">SELECT r.studentno,studentname FROM student s</span><br><span class="line">INNER JOIN result r ON s.`StudentNo`=r.`StudentNo`</span><br><span class="line">WHERE StudentResult&gt;=80 AND subjectno=(</span><br><span class="line">   SELECT subjectno FROM `subject`</span><br><span class="line">   WHERE subjectname = &#x27;高等数学-2&#x27;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">-- 方法三:使用子查询</span><br><span class="line">-- 分步写简单sql语句,然后将其嵌套起来</span><br><span class="line">SELECT studentno,studentname FROM student WHERE studentno IN(</span><br><span class="line">   SELECT studentno FROM result WHERE StudentResult&gt;=80 AND subjectno=(</span><br><span class="line">       SELECT subjectno FROM `subject` WHERE subjectname = &#x27;高等数学-2&#x27;</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">练习题目:</span><br><span class="line">   查 C语言-1 的前5名学生的成绩信息(学号,姓名,分数)</span><br><span class="line">   使用子查询,查询郭靖同学所在的年级名称</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL05：MySQL函数"><a href="#MySQL05：MySQL函数" class="headerlink" title="MySQL05：MySQL函数"></a>MySQL05：MySQL函数</h2><p><strong><font color="red">MySQL函数</font></strong></p>
+<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><p><strong>数据函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT ABS(-8);  /*绝对值*/</span><br><span class="line">SELECT CEILING(9.4); /*向上取整*/</span><br><span class="line">SELECT FLOOR(9.4);   /*向下取整*/</span><br><span class="line">SELECT RAND();  /*随机数,返回一个0-1之间的随机数*/</span><br><span class="line">SELECT SIGN(0); /*符号函数: 负数返回-1,正数返回1,0返回0*/</span><br></pre></td></tr></table></figure>
+
+<p><strong>字符串函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">SELECT CHAR_LENGTH(&#x27;狂神说坚持就能成功&#x27;); /*返回字符串包含的字符数*/</span><br><span class="line">SELECT CONCAT(&#x27;我&#x27;,&#x27;爱&#x27;,&#x27;程序&#x27;);  /*合并字符串,参数可以有多个*/</span><br><span class="line">SELECT INSERT(&#x27;我爱编程helloworld&#x27;,1,2,&#x27;超级热爱&#x27;);  /*替换字符串,从某个位置开始替换某个长度*/</span><br><span class="line">SELECT LOWER(&#x27;KuangShen&#x27;); /*小写*/</span><br><span class="line">SELECT UPPER(&#x27;KuangShen&#x27;); /*大写*/</span><br><span class="line">SELECT LEFT(&#x27;hello,world&#x27;,5);   /*从左边截取*/</span><br><span class="line">SELECT RIGHT(&#x27;hello,world&#x27;,5);  /*从右边截取*/</span><br><span class="line">SELECT REPLACE(&#x27;狂神说坚持就能成功&#x27;,&#x27;坚持&#x27;,&#x27;努力&#x27;);  /*替换字符串*/</span><br><span class="line">SELECT SUBSTR(&#x27;狂神说坚持就能成功&#x27;,4,6); /*截取字符串,开始和长度*/</span><br><span class="line">SELECT REVERSE(&#x27;狂神说坚持就能成功&#x27;); /*反转</span><br><span class="line"></span><br><span class="line">-- 查询姓周的同学,改成邹</span><br><span class="line">SELECT REPLACE(studentname,&#x27;周&#x27;,&#x27;邹&#x27;) AS 新名字</span><br><span class="line">FROM student WHERE studentname LIKE &#x27;周%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>日期和时间函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT CURRENT_DATE();   /*获取当前日期*/</span><br><span class="line">SELECT CURDATE();   /*获取当前日期*/</span><br><span class="line">SELECT NOW();   /*获取当前日期和时间*/</span><br><span class="line">SELECT LOCALTIME();   /*获取当前日期和时间*/</span><br><span class="line">SELECT SYSDATE();   /*获取当前日期和时间*/</span><br><span class="line"></span><br><span class="line">-- 获取年月日,时分秒</span><br><span class="line">SELECT YEAR(NOW());</span><br><span class="line">SELECT MONTH(NOW());</span><br><span class="line">SELECT DAY(NOW());</span><br><span class="line">SELECT HOUR(NOW());</span><br><span class="line">SELECT MINUTE(NOW());</span><br><span class="line">SELECT SECOND(NOW());</span><br></pre></td></tr></table></figure>
+
+<p><strong>系统信息函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT VERSION();  /*版本*/</span><br><span class="line">SELECT USER();     /*用户*/</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COUNT()</td>
+<td>返回满足Select条件的记录总和数，如 select count(*) 【不建议使用 *，效率低】</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>返回数字字段或表达式列作统计，返回一列的总和。</td>
+</tr>
+<tr>
+<td>AVG()</td>
+<td>通常为数值字段或表达列作统计，返回一列的平均值</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>可以为数值字段，字符字段或表达式列作统计，返回最大的值。</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>可以为数值字段，字符字段或表达式列作统计，返回最小的值。</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-- 聚合函数</span><br><span class="line">/*COUNT:非空的*/</span><br><span class="line">SELECT COUNT(studentname) FROM student;</span><br><span class="line">SELECT COUNT(*) FROM student;</span><br><span class="line">SELECT COUNT(1) FROM student;  /*推荐*/</span><br><span class="line"></span><br><span class="line">-- 从含义上讲，count(1) 与 count(*) 都表示对全部数据行的查询。</span><br><span class="line">-- count(字段) 会统计该字段在表中出现的次数，忽略字段为null 的情况。即不统计字段为null 的记录。</span><br><span class="line">-- count(*) 包括了所有的列，相当于行数，在统计结果的时候，包含字段为null 的记录；</span><br><span class="line">-- count(1) 用1代表代码行，在统计结果的时候，包含字段为null 的记录 。</span><br><span class="line">/*</span><br><span class="line">很多人认为count(1)执行的效率会比count(*)高，原因是count(*)会存在全表扫描，而count(1)可以针对一个字段进行查询。其实不然，count(1)和count(*)都会对全表进行扫描，统计所有记录的条数，包括那些为null的记录，因此，它们的效率可以说是相差无几。而count(字段)则与前两者不同，它会统计该字段不为null的记录条数。</span><br><span class="line"></span><br><span class="line">下面它们之间的一些对比：</span><br><span class="line"></span><br><span class="line">1）在表没有主键时，count(1)比count(*)快</span><br><span class="line">2）有主键时，主键作为计算条件，count(主键)效率最高；</span><br><span class="line">3）若表格只有一个字段，则count(*)效率较高。</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">SELECT SUM(StudentResult) AS 总和 FROM result;</span><br><span class="line">SELECT AVG(StudentResult) AS 平均分 FROM result;</span><br><span class="line">SELECT MAX(StudentResult) AS 最高分 FROM result;</span><br><span class="line">SELECT MIN(StudentResult) AS 最低分 FROM result;</span><br></pre></td></tr></table></figure>
+
+<p><strong>题目：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-- 查询不同课程的平均分,最高分,最低分</span><br><span class="line">-- 前提:根据不同的课程进行分组</span><br><span class="line"></span><br><span class="line">SELECT subjectname,AVG(studentresult) AS 平均分,MAX(StudentResult) AS 最高分,MIN(StudentResult) AS 最低分</span><br><span class="line">FROM result AS r</span><br><span class="line">INNER JOIN `subject` AS s</span><br><span class="line">ON r.subjectno = s.subjectno</span><br><span class="line">GROUP BY r.subjectno</span><br><span class="line">HAVING 平均分&gt;80;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">where写在group by前面.</span><br><span class="line">要是放在分组后面的筛选</span><br><span class="line">要使用HAVING..</span><br><span class="line">因为having是从前面筛选的字段再筛选，而where是从数据表中的&gt;字段直接进行的筛选的</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>MD5 加密</p>
+</blockquote>
+<p><strong>一、MD5简介</strong></p>
+<p>MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。</p>
+<p><strong>二、实现数据加密</strong></p>
+<p>新建一个表 testmd5</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `testmd5` (</span><br><span class="line"> `id` INT(4) NOT NULL,</span><br><span class="line"> `name` VARCHAR(20) NOT NULL,</span><br><span class="line"> `pwd` VARCHAR(50) NOT NULL,</span><br><span class="line"> PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=INNODB DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+
+<p>插入一些数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO testmd5 VALUES(1,&#x27;kuangshen&#x27;,&#x27;123456&#x27;),(2,&#x27;qinjiang&#x27;,&#x27;456789&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>如果我们要对pwd这一列数据进行加密，语法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update testmd5 set pwd = md5(pwd);</span><br></pre></td></tr></table></figure>
+
+<p>如果单独对某个用户(如kuangshen)的密码加密：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO testmd5 VALUES(3,&#x27;kuangshen2&#x27;,&#x27;123456&#x27;)</span><br><span class="line">update testmd5 set pwd = md5(pwd) where name = &#x27;kuangshen2&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>插入新的数据自动加密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO testmd5 VALUES(4,&#x27;kuangshen3&#x27;,md5(&#x27;123456&#x27;));</span><br></pre></td></tr></table></figure>
+
+<p>查询登录用户信息（md5对比使用，查看用户输入加密后的密码进行比对）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM testmd5 WHERE `name`=&#x27;kuangshen&#x27; AND pwd=MD5(&#x27;123456&#x27;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">-- ================ 内置函数 ================</span><br><span class="line">-- 数值函数</span><br><span class="line">abs(x)            -- 绝对值 abs(-10.9) = 10</span><br><span class="line">format(x, d)    -- 格式化千分位数值 format(1234567.456, 2) = 1,234,567.46</span><br><span class="line">ceil(x)            -- 向上取整 ceil(10.1) = 11</span><br><span class="line">floor(x)        -- 向下取整 floor (10.1) = 10</span><br><span class="line">round(x)        -- 四舍五入去整</span><br><span class="line">mod(m, n)        -- m%n m mod n 求余 10%3=1</span><br><span class="line">pi()            -- 获得圆周率</span><br><span class="line">pow(m, n)        -- m^n</span><br><span class="line">sqrt(x)            -- 算术平方根</span><br><span class="line">rand()            -- 随机数</span><br><span class="line">truncate(x, d)    -- 截取d位小数</span><br><span class="line"></span><br><span class="line">-- 时间日期函数</span><br><span class="line">now(), current_timestamp();     -- 当前日期时间</span><br><span class="line">current_date();                    -- 当前日期</span><br><span class="line">current_time();                    -- 当前时间</span><br><span class="line">date(&#x27;yyyy-mm-dd hh:ii:ss&#x27;);    -- 获取日期部分</span><br><span class="line">time(&#x27;yyyy-mm-dd hh:ii:ss&#x27;);    -- 获取时间部分</span><br><span class="line">date_format(&#x27;yyyy-mm-dd hh:ii:ss&#x27;, &#x27;%d %y %a %d %m %b %j&#x27;);    -- 格式化时间</span><br><span class="line">unix_timestamp();                -- 获得unix时间戳</span><br><span class="line">from_unixtime();                -- 从时间戳获得时间</span><br><span class="line"></span><br><span class="line">-- 字符串函数</span><br><span class="line">length(string)            -- string长度，字节</span><br><span class="line">char_length(string)        -- string的字符个数</span><br><span class="line">substring(str, position [,length])        -- 从str的position开始,取length个字符</span><br><span class="line">replace(str ,search_str ,replace_str)    -- 在str中用replace_str替换search_str</span><br><span class="line">instr(string ,substring)    -- 返回substring首次在string中出现的位置</span><br><span class="line">concat(string [,...])    -- 连接字串</span><br><span class="line">charset(str)            -- 返回字串字符集</span><br><span class="line">lcase(string)            -- 转换成小写</span><br><span class="line">left(string, length)    -- 从string2中的左边起取length个字符</span><br><span class="line">load_file(file_name)    -- 从文件读取内容</span><br><span class="line">locate(substring, string [,start_position])    -- 同instr,但可指定开始位置</span><br><span class="line">lpad(string, length, pad)    -- 重复用pad加在string开头,直到字串长度为length</span><br><span class="line">ltrim(string)            -- 去除前端空格</span><br><span class="line">repeat(string, count)    -- 重复count次</span><br><span class="line">rpad(string, length, pad)    --在str后用pad补充,直到长度为length</span><br><span class="line">rtrim(string)            -- 去除后端空格</span><br><span class="line">strcmp(string1 ,string2)    -- 逐字符比较两字串大小</span><br><span class="line"></span><br><span class="line">-- 聚合函数</span><br><span class="line">count()</span><br><span class="line">sum();</span><br><span class="line">max();</span><br><span class="line">min();</span><br><span class="line">avg();</span><br><span class="line">group_concat()</span><br><span class="line"></span><br><span class="line">-- 其他常用函数</span><br><span class="line">md5();</span><br><span class="line">default();</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL06：事务和索引"><a href="#MySQL06：事务和索引" class="headerlink" title="MySQL06：事务和索引"></a>MySQL06：事务和索引</h2><p><font color="red"><strong>事务和索引</strong></font></p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><blockquote>
+<p>什么是事务</p>
+</blockquote>
+<ul>
+<li>事务就是将一组SQL语句放在同一批次内去执行</li>
+<li>如果一个SQL语句出错,则该批次内的所有SQL都将被取消执行</li>
+<li>MySQL事务处理只支持InnoDB和BDB数据表类型</li>
+</ul>
+<blockquote>
+<p>事务的ACID原则  百度 ACID</p>
+</blockquote>
+<p><strong>原子性(Atomic)</strong></p>
+<ul>
+<li>整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（ROLLBACK）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+</ul>
+<p><strong>一致性(Consist)</strong></p>
+<ul>
+<li>一个事务可以封装状态改变（除非它是一个只读的）。事务必须始终保持系统处于一致的状态，不管在任何给定的时间并发事务有多少。也就是说：如果事务是并发多个，系统也必须如同串行事务一样操作。其主要特征是保护性和不变性(Preserving an Invariant)，以转账案例为例，假设有五个账户，每个账户余额是100元，那么五个账户总额是500元，如果在这个5个账户之间同时发生多个转账，无论并发多少个，比如在A与B账户之间转账5元，在C与D账户之间转账10元，在B与E之间转账15元，五个账户总额也应该还是500元，这就是保护性和不变性。</li>
+</ul>
+<p><strong>隔离性(Isolated)</strong></p>
+<ul>
+<li>隔离状态执行事务，使它们好像是系统在给定时间内执行的唯一操作。如果有两个事务，运行在相同的时间内，执行相同的功能，事务的隔离性将确保每一事务在系统中认为只有该事务在使用系统。这种属性有时称为串行化，为了防止事务操作间的混淆，必须串行化或序列化请求，使得在同一时间仅有一个请求用于同一数据。</li>
+</ul>
+<p><strong>持久性(Durable)</strong></p>
+<ul>
+<li>在事务完成以后，该事务对数据库所作的更改便持久的保存在数据库之中，并不会被回滚。</li>
+</ul>
+<blockquote>
+<p><strong>基本语法</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-- 使用set语句来改变自动提交模式</span><br><span class="line">SET autocommit = 0;   /*关闭*/</span><br><span class="line">SET autocommit = 1;   /*开启*/</span><br><span class="line"></span><br><span class="line">-- 注意:</span><br><span class="line">--- 1.MySQL中默认是自动提交</span><br><span class="line">--- 2.使用事务时应先关闭自动提交</span><br><span class="line"></span><br><span class="line">-- 开始一个事务,标记事务的起始点</span><br><span class="line">START TRANSACTION  </span><br><span class="line"></span><br><span class="line">-- 提交一个事务给数据库</span><br><span class="line">COMMIT</span><br><span class="line"></span><br><span class="line">-- 将事务回滚,数据回到本次事务的初始状态</span><br><span class="line">ROLLBACK</span><br><span class="line"></span><br><span class="line">-- 还原MySQL数据库的自动提交</span><br><span class="line">SET autocommit =1;</span><br><span class="line"></span><br><span class="line">-- 保存点</span><br><span class="line">SAVEPOINT 保存点名称 -- 设置一个事务保存点</span><br><span class="line">ROLLBACK TO SAVEPOINT 保存点名称 -- 回滚到保存点</span><br><span class="line">RELEASE SAVEPOINT 保存点名称 -- 删除保存点</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>测试</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">课堂测试题目</span><br><span class="line"></span><br><span class="line">A在线买一款价格为500元商品,网上银行转账.</span><br><span class="line">A的银行卡余额为2000,然后给商家B支付500.</span><br><span class="line">商家B一开始的银行卡余额为10000</span><br><span class="line"></span><br><span class="line">创建数据库shop和创建表account并插入2条数据</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">CREATE DATABASE `shop`CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">USE `shop`;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `account` (</span><br><span class="line">`id` INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">`name` VARCHAR(32) NOT NULL,</span><br><span class="line">`cash` DECIMAL(9,2) NOT NULL,</span><br><span class="line">PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=INNODB DEFAULT CHARSET=utf8</span><br><span class="line"></span><br><span class="line">INSERT INTO account (`name`,`cash`)</span><br><span class="line">VALUES(&#x27;A&#x27;,2000.00),(&#x27;B&#x27;,10000.00)</span><br><span class="line"></span><br><span class="line">-- 转账实现</span><br><span class="line">SET autocommit = 0; -- 关闭自动提交</span><br><span class="line">START TRANSACTION;  -- 开始一个事务,标记事务的起始点</span><br><span class="line">UPDATE account SET cash=cash-500 WHERE `name`=&#x27;A&#x27;;</span><br><span class="line">UPDATE account SET cash=cash+500 WHERE `name`=&#x27;B&#x27;;</span><br><span class="line">COMMIT; -- 提交事务</span><br><span class="line"># rollback;</span><br><span class="line">SET autocommit = 1; -- 恢复自动提交</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><blockquote>
+<p>索引的作用</p>
+</blockquote>
+<ul>
+<li>提高查询速度</li>
+<li>确保数据的唯一性</li>
+<li>可以加速表和表之间的连接 , 实现表与表之间的参照完整性</li>
+<li>使用分组和排序子句进行数据检索时 , 可以显著减少分组和排序的时间</li>
+<li>全文检索字段进行搜索优化.</li>
+</ul>
+<blockquote>
+<p>分类</p>
+</blockquote>
+<ul>
+<li>主键索引 (Primary Key)</li>
+<li>唯一索引 (Unique)</li>
+<li>常规索引 (Index)</li>
+<li>全文索引 (FullText)</li>
+</ul>
+<blockquote>
+<p>主键索引</p>
+</blockquote>
+<p>主键 : 某一个属性组能唯一标识一条记录</p>
+<p>特点 :</p>
+<ul>
+<li>最常见的索引类型</li>
+<li>确保数据记录的唯一性</li>
+<li>确定特定数据记录在数据库中的位置</li>
+</ul>
+<blockquote>
+<p>唯一索引</p>
+</blockquote>
+<p>作用 : 避免同一个表中某数据列中的值重复</p>
+<p>与主键索引的区别</p>
+<ul>
+<li>主键索引只能有一个</li>
+<li>唯一索引可能有多个</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `Grade`(</span><br><span class="line">  `GradeID` INT(11) AUTO_INCREMENT PRIMARYKEY,</span><br><span class="line">  `GradeName` VARCHAR(32) NOT NULL UNIQUE</span><br><span class="line">   -- 或 UNIQUE KEY `GradeID` (`GradeID`)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>常规索引</p>
+</blockquote>
+<p>作用 : 快速定位特定数据</p>
+<p>注意 :</p>
+<ul>
+<li>index 和 key 关键字都可以设置常规索引</li>
+<li>应加在查询找条件的字段</li>
+<li>不宜添加太多常规索引,影响数据的插入,删除和修改操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `result`(</span><br><span class="line">   -- 省略一些代码</span><br><span class="line">  INDEX/KEY `ind` (`studentNo`,`subjectNo`) -- 创建表时添加</span><br><span class="line">)</span><br><span class="line">-- 创建后添加</span><br><span class="line">ALTER TABLE `result` ADD INDEX `ind`(`studentNo`,`subjectNo`);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>全文索引</p>
+</blockquote>
+<p>百度搜索：全文索引</p>
+<p>作用 : 快速定位特定数据</p>
+<p>注意 :</p>
+<ul>
+<li>只能用于MyISAM类型的数据表</li>
+<li>只能用于CHAR , VARCHAR , TEXT数据列类型</li>
+<li>适合大型数据集</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">#方法一：创建表时</span><br><span class="line">  　　CREATE TABLE 表名 (</span><br><span class="line">               字段名1 数据类型 [完整性约束条件…],</span><br><span class="line">               字段名2 数据类型 [完整性约束条件…],</span><br><span class="line">               [UNIQUE | FULLTEXT | SPATIAL ]   INDEX | KEY</span><br><span class="line">               [索引名] (字段名[(长度)] [ASC |DESC])</span><br><span class="line">               );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#方法二：CREATE在已存在的表上创建索引</span><br><span class="line">       CREATE [UNIQUE | FULLTEXT | SPATIAL ] INDEX 索引名</span><br><span class="line">                    ON 表名 (字段名[(长度)] [ASC |DESC]) ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#方法三：ALTER TABLE在已存在的表上创建索引</span><br><span class="line">       ALTER TABLE 表名 ADD [UNIQUE | FULLTEXT | SPATIAL ] INDEX</span><br><span class="line">                            索引名 (字段名[(长度)] [ASC |DESC]) ;</span><br><span class="line">                           </span><br><span class="line">                           </span><br><span class="line">#删除索引：DROP INDEX 索引名 ON 表名字;</span><br><span class="line">#删除主键索引: ALTER TABLE 表名 DROP PRIMARY KEY;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#显示索引信息: SHOW INDEX FROM student;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">/*增加全文索引*/</span><br><span class="line">ALTER TABLE `school`.`student` ADD FULLTEXT INDEX `studentname` (`StudentName`);</span><br><span class="line"></span><br><span class="line">/*EXPLAIN : 分析SQL语句执行性能*/</span><br><span class="line">EXPLAIN SELECT * FROM student WHERE studentno=&#x27;1000&#x27;;</span><br><span class="line"></span><br><span class="line">/*使用全文索引*/</span><br><span class="line">-- 全文搜索通过 MATCH() 函数完成。</span><br><span class="line">-- 搜索字符串作为 against() 的参数被给定。搜索以忽略字母大小写的方式执行。对于表中的每个记录行，MATCH() 返回一个相关性值。即，在搜索字符串与记录行在 MATCH() 列表中指定的列的文本之间的相似性尺度。</span><br><span class="line">EXPLAIN SELECT *FROM student WHERE MATCH(studentname) AGAINST(&#x27;love&#x27;);</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">开始之前，先说一下全文索引的版本、存储引擎、数据类型的支持情况</span><br><span class="line"></span><br><span class="line">MySQL 5.6 以前的版本，只有 MyISAM 存储引擎支持全文索引；</span><br><span class="line">MySQL 5.6 及以后的版本，MyISAM 和 InnoDB 存储引擎均支持全文索引;</span><br><span class="line">只有字段的数据类型为 char、varchar、text 及其系列才可以建全文索引。</span><br><span class="line">测试或使用全文索引时，要先看一下自己的 MySQL 版本、存储引擎和数据类型是否支持全文索引。</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>拓展：测试索引</p>
+</blockquote>
+<p><strong>建表app_user：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `app_user` (</span><br><span class="line">`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,</span><br><span class="line">`name` varchar(50) DEFAULT &#x27;&#x27; COMMENT &#x27;用户昵称&#x27;,</span><br><span class="line">`email` varchar(50) NOT NULL COMMENT &#x27;用户邮箱&#x27;,</span><br><span class="line">`phone` varchar(20) DEFAULT &#x27;&#x27; COMMENT &#x27;手机号&#x27;,</span><br><span class="line">`gender` tinyint(4) unsigned DEFAULT &#x27;0&#x27; COMMENT &#x27;性别（0:男；1：女）&#x27;,</span><br><span class="line">`password` varchar(100) NOT NULL COMMENT &#x27;密码&#x27;,</span><br><span class="line">`age` tinyint(4) DEFAULT &#x27;0&#x27; COMMENT &#x27;年龄&#x27;,</span><br><span class="line">`create_time` datetime DEFAULT CURRENT_TIMESTAMP,</span><br><span class="line">`update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATECURRENT_TIMESTAMP,</span><br><span class="line">PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&#x27;app用户表&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>批量插入数据：100w</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">DROP FUNCTION IF EXISTS mock_data;</span><br><span class="line">DELIMITER $$</span><br><span class="line">CREATE FUNCTION mock_data()</span><br><span class="line">RETURNS INT</span><br><span class="line">BEGIN</span><br><span class="line">DECLARE num INT DEFAULT 1000000;</span><br><span class="line">DECLARE i INT DEFAULT 0;</span><br><span class="line">WHILE i &lt; num DO</span><br><span class="line">  INSERT INTO app_user(`name`, `email`, `phone`, `gender`, `password`, `age`)</span><br><span class="line">   VALUES(CONCAT(&#x27;用户&#x27;, i), &#x27;24736743@qq.com&#x27;, CONCAT(&#x27;18&#x27;, FLOOR(RAND()*(999999999-100000000)+100000000)),FLOOR(RAND()*2),UUID(), FLOOR(RAND()*100));</span><br><span class="line">  SET i = i + 1;</span><br><span class="line">END WHILE;</span><br><span class="line">RETURN i;</span><br><span class="line">END;</span><br><span class="line">SELECT mock_data();</span><br></pre></td></tr></table></figure>
+
+<p><strong>索引效率测试</strong></p>
+<p>无索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;; -- 查看耗时</span><br><span class="line">SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;;</span><br><span class="line">SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;;</span><br><span class="line"></span><br><span class="line">mysql&gt; EXPLAIN SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">          id: 1</span><br><span class="line">select_type: SIMPLE</span><br><span class="line">       table: app_user</span><br><span class="line">  partitions: NULL</span><br><span class="line">        type: ALL</span><br><span class="line">possible_keys: NULL</span><br><span class="line">        key: NULL</span><br><span class="line">    key_len: NULL</span><br><span class="line">        ref: NULL</span><br><span class="line">        rows: 992759</span><br><span class="line">    filtered: 10.00</span><br><span class="line">      Extra: Using where</span><br><span class="line">1 row in set, 1 warning (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>创建索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX idx_app_user_name ON app_user(name);</span><br></pre></td></tr></table></figure>
+
+<p>测试普通索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; EXPLAIN SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">          id: 1</span><br><span class="line">select_type: SIMPLE</span><br><span class="line">       table: app_user</span><br><span class="line">  partitions: NULL</span><br><span class="line">        type: ref</span><br><span class="line">possible_keys: idx_app_user_name</span><br><span class="line">        key: idx_app_user_name</span><br><span class="line">    key_len: 203</span><br><span class="line">        ref: const</span><br><span class="line">        rows: 1</span><br><span class="line">    filtered: 100.00</span><br><span class="line">      Extra: NULL</span><br><span class="line">1 row in set, 1 warning (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;;</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;;</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM app_user WHERE name = &#x27;用户9999&#x27;;</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>索引准则</p>
+</blockquote>
+<ul>
+<li>索引不是越多越好</li>
+<li>不要对经常变动的数据加索引</li>
+<li>小数据量的表建议不要加索引</li>
+<li>索引一般应加在查找条件的字段</li>
+</ul>
+<blockquote>
+<p>索引的数据结构</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 我们可以在创建上述索引的时候，为其指定索引类型，分两类</span><br><span class="line">hash类型的索引：查询单条快，范围查询慢</span><br><span class="line">btree类型的索引：b+树，层数越多，数据量指数级增长（我们就用它，因为innodb默认支持它）</span><br><span class="line"></span><br><span class="line">-- 不同的存储引擎支持的索引类型也不一样</span><br><span class="line">InnoDB 支持事务，支持行级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；</span><br><span class="line">MyISAM 不支持事务，支持表级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；</span><br><span class="line">Memory 不支持事务，支持表级别锁定，支持 B-tree、Hash 等索引，不支持 Full-text 索引；</span><br><span class="line">NDB 支持事务，支持行级别锁定，支持 Hash 索引，不支持 B-tree、Full-text 等索引；</span><br><span class="line">Archive 不支持事务，支持表级别锁定，不支持 B-tree、Hash、Full-text 等索引；</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL07：权限及如何设计数据库"><a href="#MySQL07：权限及如何设计数据库" class="headerlink" title="MySQL07：权限及如何设计数据库"></a>MySQL07：权限及如何设计数据库</h2><p><font color="red"><strong>权限及设计数据库</strong></font></p>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><blockquote>
+<p>使用SQLyog 创建用户，并授予权限演示</p>
+</blockquote>
+<p><img src="https://gitee.com/xiebiao99/images/raw/master/img/20210725215718.png"></p>
+<blockquote>
+<p>基本命令</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/* 用户和权限管理 */ ------------------</span><br><span class="line">用户信息表：mysql.user</span><br><span class="line"></span><br><span class="line">-- 刷新权限</span><br><span class="line">FLUSH PRIVILEGES</span><br><span class="line"></span><br><span class="line">-- 增加用户 CREATE USER kuangshen IDENTIFIED BY &#x27;123456&#x27;</span><br><span class="line">CREATE USER 用户名 IDENTIFIED BY [PASSWORD] 密码(字符串)</span><br><span class="line">  - 必须拥有mysql数据库的全局CREATE USER权限，或拥有INSERT权限。</span><br><span class="line">  - 只能创建用户，不能赋予权限。</span><br><span class="line">  - 用户名，注意引号：如 &#x27;user_name&#x27;@&#x27;192.168.1.1&#x27;</span><br><span class="line">  - 密码也需引号，纯数字密码也要加引号</span><br><span class="line">  - 要在纯文本中指定密码，需忽略PASSWORD关键词。要把密码指定为由PASSWORD()函数返回的混编值，需包含关键字PASSWORD</span><br><span class="line"></span><br><span class="line">-- 重命名用户 RENAME USER kuangshen TO kuangshen2</span><br><span class="line">RENAME USER old_user TO new_user</span><br><span class="line"></span><br><span class="line">-- 设置密码</span><br><span class="line">SET PASSWORD = PASSWORD(&#x27;密码&#x27;)    -- 为当前用户设置密码</span><br><span class="line">SET PASSWORD FOR 用户名 = PASSWORD(&#x27;密码&#x27;)    -- 为指定用户设置密码</span><br><span class="line"></span><br><span class="line">-- 删除用户 DROP USER kuangshen2</span><br><span class="line">DROP USER 用户名</span><br><span class="line"></span><br><span class="line">-- 分配权限/添加用户</span><br><span class="line">GRANT 权限列表 ON 表名 TO 用户名 [IDENTIFIED BY [PASSWORD] &#x27;password&#x27;]</span><br><span class="line">  - all privileges 表示所有权限</span><br><span class="line">  - *.* 表示所有库的所有表</span><br><span class="line">  - 库名.表名 表示某库下面的某表</span><br><span class="line"></span><br><span class="line">-- 查看权限   SHOW GRANTS FOR root@localhost;</span><br><span class="line">SHOW GRANTS FOR 用户名</span><br><span class="line">   -- 查看当前用户权限</span><br><span class="line">  SHOW GRANTS; 或 SHOW GRANTS FOR CURRENT_USER; 或 SHOW GRANTS FOR CURRENT_USER();</span><br><span class="line"></span><br><span class="line">-- 撤消权限</span><br><span class="line">REVOKE 权限列表 ON 表名 FROM 用户名</span><br><span class="line">REVOKE ALL PRIVILEGES, GRANT OPTION FROM 用户名    -- 撤销所有权限</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>权限解释</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">-- 权限列表</span><br><span class="line">ALL [PRIVILEGES]    -- 设置除GRANT OPTION之外的所有简单权限</span><br><span class="line">ALTER    -- 允许使用ALTER TABLE</span><br><span class="line">ALTER ROUTINE    -- 更改或取消已存储的子程序</span><br><span class="line">CREATE    -- 允许使用CREATE TABLE</span><br><span class="line">CREATE ROUTINE    -- 创建已存储的子程序</span><br><span class="line">CREATE TEMPORARY TABLES        -- 允许使用CREATE TEMPORARY TABLE</span><br><span class="line">CREATE USER        -- 允许使用CREATE USER, DROP USER, RENAME USER和REVOKE ALL PRIVILEGES。</span><br><span class="line">CREATE VIEW        -- 允许使用CREATE VIEW</span><br><span class="line">DELETE    -- 允许使用DELETE</span><br><span class="line">DROP    -- 允许使用DROP TABLE</span><br><span class="line">EXECUTE        -- 允许用户运行已存储的子程序</span><br><span class="line">FILE    -- 允许使用SELECT...INTO OUTFILE和LOAD DATA INFILE</span><br><span class="line">INDEX     -- 允许使用CREATE INDEX和DROP INDEX</span><br><span class="line">INSERT    -- 允许使用INSERT</span><br><span class="line">LOCK TABLES        -- 允许对您拥有SELECT权限的表使用LOCK TABLES</span><br><span class="line">PROCESS     -- 允许使用SHOW FULL PROCESSLIST</span><br><span class="line">REFERENCES    -- 未被实施</span><br><span class="line">RELOAD    -- 允许使用FLUSH</span><br><span class="line">REPLICATION CLIENT    -- 允许用户询问从属服务器或主服务器的地址</span><br><span class="line">REPLICATION SLAVE    -- 用于复制型从属服务器（从主服务器中读取二进制日志事件）</span><br><span class="line">SELECT    -- 允许使用SELECT</span><br><span class="line">SHOW DATABASES    -- 显示所有数据库</span><br><span class="line">SHOW VIEW    -- 允许使用SHOW CREATE VIEW</span><br><span class="line">SHUTDOWN    -- 允许使用mysqladmin shutdown</span><br><span class="line">SUPER    -- 允许使用CHANGE MASTER, KILL, PURGE MASTER LOGS和SET GLOBAL语句，mysqladmin debug命令；允许您连接（一次），即使已达到max_connections。</span><br><span class="line">UPDATE    -- 允许使用UPDATE</span><br><span class="line">USAGE    -- “无权限”的同义词</span><br><span class="line">GRANT OPTION    -- 允许授予权限</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/* 表维护 */</span><br><span class="line"></span><br><span class="line">-- 分析和存储表的关键字分布</span><br><span class="line">ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE 表名 ...</span><br><span class="line">-- 检查一个或多个表是否有错误</span><br><span class="line">CHECK TABLE tbl_name [, tbl_name] ... [option] ...</span><br><span class="line">option = &#123;QUICK | FAST | MEDIUM | EXTENDED | CHANGED&#125;</span><br><span class="line">-- 整理数据文件的碎片</span><br><span class="line">OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="MySQL备份"><a href="#MySQL备份" class="headerlink" title="MySQL备份"></a>MySQL备份</h3><p>数据库备份必要性</p>
+<ul>
+<li>保证重要数据不丢失</li>
+<li>数据转移</li>
+</ul>
+<p>MySQL数据库备份方法</p>
+<ul>
+<li>mysqldump备份工具</li>
+<li>数据库管理工具,如SQLyog</li>
+<li>直接拷贝数据库文件和相关配置文件</li>
+</ul>
+<p><strong>mysqldump客户端</strong></p>
+<p>作用 :</p>
+<ul>
+<li>转储数据库</li>
+<li>搜集数据库进行备份</li>
+<li>将数据转移到另一个SQL服务器,不一定是MySQL服务器</li>
+</ul>
+<p><img src="/.io//gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="图片"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 导出</span><br><span class="line">1. 导出一张表 -- mysqldump -uroot -p123456 school student &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 库名 表名 &gt; 文件名(D:/a.sql)</span><br><span class="line">2. 导出多张表 -- mysqldump -uroot -p123456 school student result &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 库名 表1 表2 表3 &gt; 文件名(D:/a.sql)</span><br><span class="line">3. 导出所有表 -- mysqldump -uroot -p123456 school &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 库名 &gt; 文件名(D:/a.sql)</span><br><span class="line">4. 导出一个库 -- mysqldump -uroot -p123456 -B school &gt;D:/a.sql</span><br><span class="line">　　mysqldump -u用户名 -p密码 -B 库名 &gt; 文件名(D:/a.sql)</span><br><span class="line"></span><br><span class="line">可以-w携带备份条件</span><br><span class="line"></span><br><span class="line">-- 导入</span><br><span class="line">1. 在登录mysql的情况下：-- source D:/a.sql</span><br><span class="line">　　source 备份文件</span><br><span class="line">2. 在不登录的情况下</span><br><span class="line">　　mysql -u用户名 -p密码 库名 &lt; 备份文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="规范化数据库设计"><a href="#规范化数据库设计" class="headerlink" title="规范化数据库设计"></a>规范化数据库设计</h2><h3 id="为什么需要数据库设计"><a href="#为什么需要数据库设计" class="headerlink" title="为什么需要数据库设计"></a>为什么需要数据库设计</h3><p><strong>当数据库比较复杂时我们需要设计数据库</strong></p>
+<p><strong>糟糕的数据库设计 :</strong> </p>
+<ul>
+<li>数据冗余,存储空间浪费</li>
+<li>数据更新和插入的异常</li>
+<li>程序性能差</li>
+</ul>
+<p><strong>良好的数据库设计 :</strong> </p>
+<ul>
+<li>节省数据的存储空间</li>
+<li>能够保证数据的完整性</li>
+<li>方便进行数据库应用系统的开发</li>
+</ul>
+<p> <strong>软件项目开发周期中数据库设计 :</strong></p>
+<ul>
+<li>需求分析阶段: 分析客户的业务和数据处理需求</li>
+<li>概要设计阶段:设计数据库的E-R模型图 , 确认需求信息的正确和完整.</li>
+</ul>
+<p><strong>设计数据库步骤</strong></p>
+<ul>
+<li><p>收集信息</p>
+</li>
+<li><ul>
+<li>与该系统有关人员进行交流 , 座谈 , 充分了解用户需求 , 理解数据库需要完成的任务.</li>
+</ul>
+</li>
+<li><p>标识实体[Entity]</p>
+</li>
+<li></li>
+<li><ul>
+<li>标识数据库要管理的关键对象或实体,实体一般是名词</li>
+</ul>
+</li>
+<li><p>标识每个实体需要存储的详细信息[Attribute]</p>
+</li>
+<li><p>标识实体之间的关系[Relationship]</p>
+</li>
+</ul>
+<h3 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h3><p><strong>问题 : 为什么需要数据规范化?</strong></p>
+<p>不合规范的表设计会导致的问题：</p>
+<ul>
+<li><p>信息重复</p>
+</li>
+<li><p>更新异常</p>
+</li>
+<li><p>插入异常</p>
+</li>
+<li><ul>
+<li>无法正确表示信息</li>
+</ul>
+</li>
+<li><p>删除异常</p>
+</li>
+<li><ul>
+<li>丢失有效信息</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>三大范式</p>
+</blockquote>
+<p><strong>第一范式 (1st NF)</strong></p>
+<p>第一范式的目标是确保每列的原子性,如果每列都是不可再分的最小数据单元,则满足第一范式</p>
+<p><strong>第二范式(2nd NF)</strong></p>
+<p>第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。</p>
+<p>第二范式要求每个表只描述一件事情</p>
+<p><strong>第三范式(3rd NF)</strong></p>
+<p>如果一个关系满足第二范式,并且除了主键以外的其他列都不传递依赖于主键列,则满足第三范式.</p>
+<p>第三范式需要确保数据表中的每一列数据都和主键直接相关，而不能间接相关。</p>
+<p><strong>规范化和性能的关系</strong></p>
+<p>为满足某种商业目标 , 数据库性能比规范化数据库更重要</p>
+<p>在数据规范化的同时 , 要综合考虑数据库的性能</p>
+<p>通过在给定的表中添加额外的字段,以大量减少需要从中搜索信息所需的时间</p>
+<p>通过在给定的表中插入计算列,以方便查询</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xiebiao99.github.io/2019/01/20/Typora-Picgo-Gitee%E4%BA%91%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1189,12 +2096,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
